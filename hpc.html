@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>HPC Documentation (HIBU) — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── HPC page extras ──────────────────────────────────── */
+.hpc-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+/* Sticky sidebar TOC */
+.hpc-toc {
+  position: sticky;
+  top: 84px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.hpc-toc h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.hpc-toc ul { list-style: none; }
+.hpc-toc li { margin-bottom: 4px; }
+.hpc-toc a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all var(--t);
+}
+.hpc-toc a:hover  { color: var(--primary); background: var(--primary-light); }
+.hpc-toc .toc-sub { padding-left: 14px; font-size: 12px; }
+
+/* Doc body */
+.hpc-body { min-width: 0; }
+.hpc-body h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  margin: 48px 0 14px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+}
+.hpc-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.hpc-body h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 28px 0 10px;
+  color: var(--text);
+}
+.hpc-body h4 { font-size: 15px; font-weight: 700; margin: 20px 0 8px; color: var(--primary); }
+.hpc-body p  { font-size: 14.5px; line-height: 1.75; color: var(--text); margin-bottom: 14px; }
+.hpc-body ul, .hpc-body ol { padding-left: 20px; margin-bottom: 16px; }
+.hpc-body li { font-size: 14px; line-height: 1.7; color: var(--text); margin-bottom: 6px; }
+.hpc-body li strong { color: var(--primary); }
+.hpc-body a  { color: var(--primary); font-weight: 600; }
+.hpc-body a:hover { color: var(--accent); }
+
+/* Code blocks */
+.code-block {
+  background: #0F172A;
+  border: 1px solid #1E293B;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 16px 0 20px;
+  overflow-x: auto;
+  position: relative;
+}
+.code-block pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: #e2e8f0;
+  white-space: pre;
+  margin: 0;
+}
+.code-block .c-comment { color: #64748B; }
+.code-block .c-flag    { color: #93c5fd; }
+.code-block .c-value   { color: #6ee7b7; }
+.code-block .c-cmd     { color: #fde68a; }
+.code-block-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748B;
+  margin-bottom: 8px;
+}
+
+/* Inline code */
+code {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+/* Info / warning callouts */
+.callout {
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+}
+.callout i      { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+.callout.info   { background: var(--primary-light); border-left: 4px solid var(--primary); }
+.callout.info i { color: var(--primary); }
+.callout.warn   { background: #FFF7ED; border-left: 4px solid #D4620A; }
+.callout.warn i { color: #D4620A; }
+.callout.danger { background: #FFF1F2; border-left: 4px solid #be123c; }
+.callout.danger i { color: #be123c; }
+
+/* Partition table */
+.partition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin: 20px 0;
+}
+.partition-table th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+.partition-table th:first-child { border-radius: 10px 0 0 0; }
+.partition-table th:last-child  { border-radius: 0 10px 0 0; }
+.partition-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.partition-table tr:nth-child(even) td { background: var(--primary-light); }
+.partition-table tr:last-child td { border-bottom: none; }
+.partition-table .badge {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+/* Cheat sheet grid */
+.cheat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.cheat-item {
+  background: #0F172A;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.cheat-item .cmd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  color: #fde68a;
+  margin-bottom: 4px;
+}
+.cheat-item .desc { font-size: 12px; color: #94A3B8; }
+
+/* Cluster specs strip */
+.spec-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+.spec-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 16px;
+}
+.spec-card .spec-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+.spec-card .spec-val { font-size: 16px; font-weight: 800; color: var(--primary); }
+.spec-card .spec-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* Step list */
+.step-list { list-style: none; padding: 0; counter-reset: steps; }
+.step-list li {
+  counter-increment: steps;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+.step-list li::before {
+  content: counter(steps);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .hpc-layout { grid-template-columns: 1fr; }
+  .hpc-toc    { position: static; }
+  .cheat-grid, .spec-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="imbb-logo.jpeg" alt="IMBB-FORTH" style="height:44px;width:auto;background:#fff;padding:3px 8px;border-radius:7px;display:block;">
+      <div class="nav-brand-text">Bioinformatics Unit <span>Core Facility · IMBB-FORTH</span></div>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html" class="active"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="index.html#contact" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / HPC Documentation</div>
+    <h1>HIBU — New User Guide</h1>
+    <p>Everything you need to get started on the IMBB Bioinformatics HPC cluster: access, storage, Slurm scheduling, and best practices.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="hpc-layout">
+
+    <!-- SIDEBAR TOC -->
+    <aside class="hpc-toc">
+      <h4>Contents</h4>
+      <ul>
+        <li><a href="#cluster">Cluster Details</a></li>
+        <li><a href="#partitions">Partitions</a></li>
+        <li><a href="#access">1. Access &amp; Login</a></li>
+        <li class="toc-sub"><a href="#windows">Windows users</a></li>
+        <li class="toc-sub"><a href="#linux">Linux / macOS</a></li>
+        <li><a href="#storage">2. Storage &amp; Transfers</a></li>
+        <li><a href="#slurm">3. SLURM Scheduler</a></li>
+        <li class="toc-sub"><a href="#commands">Commands</a></li>
+        <li class="toc-sub"><a href="#job-types">Job types</a></li>
+        <li class="toc-sub"><a href="#resources">Requesting resources</a></li>
+        <li class="toc-sub"><a href="#monitoring">Monitoring &amp; Logs</a></li>
+        <li><a href="#practices">Best Practices</a></li>
+        <li><a href="#troubleshoot">Troubleshooting</a></li>
+        <li><a href="#cheatsheet">Quick Reference</a></li>
+        <li><a href="#templates">Job Templates</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN DOC BODY -->
+    <div class="hpc-body">
+
+      <!-- CLUSTER DETAILS -->
+      <h2 id="cluster"><i class="fa-solid fa-server" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>Cluster Details</h2>
+      <p>HIBU is a high-performance computing (HPC) system consisting of four compute nodes organized into two partitions. Job scheduling is managed by the Slurm scheduler. A dedicated head (login) node allows users to prepare scripts, submit and cancel jobs, and transfer data. HIBU uses a NAS with a total capacity of up to 42 TB.</p>
+
+      <div class="spec-cards">
+        <div class="spec-card">
+          <div class="spec-label">Cluster Name</div>
+          <div class="spec-val">HIBU</div>
+          <div class="spec-sub">Heraklion Informatics &amp; Bioinformatics Unit</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Login Hostname</div>
+          <div class="spec-val" style="font-size:13px;font-family:'JetBrains Mono',monospace;">hibu.imbb.gr</div>
+          <div class="spec-sub">Or 139.91.75.141 (VPN needed outside IMBB)</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Total Nodes</div>
+          <div class="spec-val">4</div>
+          <div class="spec-sub">3 × long + 1 × short/smallhm</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Scratch Storage</div>
+          <div class="spec-val">42 TB</div>
+          <div class="spec-sub">NAS · /data/{USER}</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Containers</div>
+          <div class="spec-val">Singularity</div>
+          <div class="spec-sub">Pre-installed on all nodes</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-label">Support</div>
+          <div class="spec-val" style="font-size:12.5px;font-family:'JetBrains Mono',monospace;"><a href="mailto:hpc-support@imbb.forth.gr">hpc-support@<br>imbb.forth.gr</a></div>
+        </div>
+      </div>
+
+      <ul>
+        <li><strong>Default partition:</strong> <code>long</code></li>
+        <li><strong>Available partitions:</strong> <code>long</code>, <code>short</code>, <code>smallhm</code></li>
+        <li><strong>Filesystems:</strong> HOME <code>/home/{USER}/</code> · SCRATCH <code>/data/{USER}/</code></li>
+        <li><strong>Data transfer:</strong> scp, rsync, FTP, wget, curl</li>
+      </ul>
+
+      <!-- PARTITIONS -->
+      <h2 id="partitions"><i class="fa-solid fa-layer-group" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>Partitions</h2>
+      <table class="partition-table">
+        <thead>
+          <tr>
+            <th>Partition</th>
+            <th>Nodes</th>
+            <th>Cores / node</th>
+            <th>Threads / core</th>
+            <th>RAM / node</th>
+            <th>Hostnames</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">long</span><br><small>Default</small></td>
+            <td>3</td>
+            <td>24</td>
+            <td>2</td>
+            <td>256 GB</td>
+            <td><code>node1</code>, <code>node2</code>, <code>node3</code></td>
+          </tr>
+          <tr>
+            <td><span class="badge">short</span></td>
+            <td>1</td>
+            <td>20</td>
+            <td>2</td>
+            <td>126 GB</td>
+            <td><code>node4</code></td>
+          </tr>
+          <tr>
+            <td><span class="badge">smallhm</span></td>
+            <td>1</td>
+            <td>16</td>
+            <td>2</td>
+            <td>256 GB</td>
+            <td><code>node5</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <img src="https://www.imbb.forth.gr/files/facilities/bioinformatics/hibu_guide_image_0.png"
+           alt="HIBU cluster overview diagram"
+           style="max-width:100%;border-radius:12px;border:1px solid var(--border);margin:8px 0 24px;">
+
+      <!-- ACCESS -->
+      <h2 id="access"><i class="fa-solid fa-key" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>1. Access &amp; First Login</h2>
+
+      <h3>New account setup</h3>
+      <ol class="step-list">
+        <li>Request an account by emailing <a href="mailto:hpc-support@imbb.forth.gr">hpc-support@imbb.forth.gr</a>. Include your affiliation, intended workloads, and software needs.</li>
+        <li>Set up the IMBB VPN — required to access HIBU from outside the IMBB/FORTH network.</li>
+        <li>Download <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Google Authenticator</a> on your smartphone and scan the QR code sent by the administrator.</li>
+      </ol>
+
+      <h3 id="windows">Windows users</h3>
+      <ol class="step-list">
+        <li>Download <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank">PuTTY</a> on your personal computer.</li>
+        <li>Connect to the IMBB VPN (when working outside the office).</li>
+        <li>Enter your username, the correct hostname/IP (<code>hibu.imbb.gr</code> or <code>139.91.75.141</code>), and port in PuTTY.</li>
+        <li>When connected, enter your password and the verification code from Google Authenticator.</li>
+      </ol>
+      <img src="https://www.imbb.forth.gr/files/facilities/bioinformatics/hibu_guide_image_1.png"
+           alt="PuTTY connection setup" style="max-width:480px;border-radius:10px;border:1px solid var(--border);margin:8px 0 20px;">
+
+      <h3 id="linux">Linux / macOS users</h3>
+      <p>Open a terminal and connect via SSH:</p>
+      <div class="code-block">
+        <pre><span class="c-cmd">ssh</span> my-username@139.91.75.141</pre>
+      </div>
+      <p>When connected you will be prompted for your password and a one-time code from Google Authenticator.</p>
+      <img src="https://www.imbb.forth.gr/files/facilities/bioinformatics/hibu_guide_image_2.png"
+           alt="SSH login" style="max-width:480px;border-radius:10px;border:1px solid var(--border);margin:8px 0 20px;">
+
+      <div class="callout warn">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div><strong>Head node policy:</strong> You are connected to the login/head node. This node is for preparing scripts, managing data, and submitting jobs only. Running analyses directly on the head node disrupts all other users. Always submit work via the Slurm scheduler.</div>
+      </div>
+      <img src="https://www.imbb.forth.gr/files/facilities/bioinformatics/hibu_guide_image_3.png"
+           alt="Head node diagram" style="max-width:480px;border-radius:10px;border:1px solid var(--border);margin:8px 0 24px;">
+
+      <!-- STORAGE -->
+      <h2 id="storage"><i class="fa-solid fa-hard-drive" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>2. Filesystems &amp; Data Storage</h2>
+      <ul>
+        <li><strong>$HOME</strong> — <code>/home/{USER}</code>: small quota, for configuration files and scripts only. Not backed up.</li>
+        <li><strong>SCRATCH</strong> — <code>/data/{USER}</code>: fast, large (42 TB total). Use this for all analysis input/output. Not backed up.</li>
+      </ul>
+      <div class="callout danger">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <div><strong>Do not run analyses from $HOME.</strong> All analysis input data and output files must reside on <code>/data/{USER}</code>. Running I/O-intensive jobs from $HOME degrades performance for all users.</div>
+      </div>
+
+      <h3>Data transfers</h3>
+      <div class="code-block">
+        <div class="code-block-label">Copy files to HIBU scratch</div>
+        <pre><span class="c-cmd">scp</span>   local_file.fastq.gz  username@139.91.75.141:/data/username/
+
+<span class="c-cmd">rsync</span> -avP local_data/  username@139.91.75.141:/data/username/data/
+
+<span class="c-cmd">wget</span>  https://example.org/reference_genome.fa -P /data/username/refs/</pre>
+      </div>
+
+      <!-- SLURM -->
+      <h2 id="slurm"><i class="fa-solid fa-calendar-check" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>3. SLURM Job Scheduler</h2>
+
+      <h3 id="commands">3.2 Core commands</h3>
+      <ul>
+        <li><strong><code>sinfo</code></strong> — list the current status of all partitions and nodes.</li>
+        <li><strong><code>squeue</code></strong> — list all currently running and queued jobs.</li>
+        <li><strong><code>sbatch &lt;script&gt;</code></strong> — submit a job script to the queue.</li>
+        <li><strong><code>scancel &lt;jobid&gt;</code></strong> — cancel a running or queued job. Use <code>squeue</code> to find your job ID.</li>
+        <li><strong><code>sacct</code></strong> — retrieve accounting information for completed jobs.</li>
+        <li><strong><code>scontrol show job &lt;jobid&gt;</code></strong> — inspect a specific job's details.</li>
+      </ul>
+
+      <p><strong>Common #SBATCH arguments:</strong></p>
+      <ul>
+        <li><code>--partition=long</code> — target queue (long / short / smallhm)</li>
+        <li><code>--nodes=1</code>, <code>--ntasks=1</code>, <code>--cpus-per-task=4</code> — CPU allocation</li>
+        <li><code>--mem=8G</code> — memory per node; or <code>--mem-per-cpu=4G</code></li>
+        <li><code>--time=24:00:00</code> — wall-clock time limit (HH:MM:SS)</li>
+        <li><code>--array=1-100%10</code> — job array (100 tasks, max 10 concurrent)</li>
+        <li><code>-o slurm-%j.out</code> — stdout file (%j = job ID)</li>
+      </ul>
+
+      <h3 id="job-types">3.3 Basic job types</h3>
+
+      <h4>A) Single node — serial or multicore</h4>
+      <p>Request only the cores and memory you need, leaving the rest available to other users.</p>
+      <div class="code-block">
+        <div class="code-block-label">single_node_job.sh</div>
+        <pre><span class="c-comment">#!/bin/bash</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--job-name="hello"</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--partition=long</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--nodes=1</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--cpus-per-task=4</span>   <span class="c-comment"># 4 cores out of 24</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--mem=8G</span>           <span class="c-comment"># 8 GB out of 256 GB</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--time=12:00:00</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">-o slurm-%j.out</span>
+
+python myscript.py \
+  --input  /data/${USER}/data/input.dat \
+  --output /data/${USER}/results/out.txt</pre>
+      </div>
+
+      <h4>B) Job array — many similar tasks in parallel</h4>
+      <p>Ideal when you can split input into independent chunks processed across nodes.</p>
+      <div class="code-block">
+        <div class="code-block-label">job_array.sh</div>
+        <pre><span class="c-comment">#!/bin/bash</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--job-name="array_job"</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--partition=long</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--nodes=1</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--cpus-per-task=1</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--mem=2G</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--array=1-10</span>       <span class="c-comment"># 10 tasks</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">-o logs/array_%A_%a.out</span>
+
+PARAMS=$(sed -n "${SLURM_ARRAY_TASK_ID}p" params.txt)
+
+python simulate.py $PARAMS \
+  --seed ${SLURM_ARRAY_TASK_ID} \
+  --out  results/${SLURM_ARRAY_TASK_ID}.json</pre>
+      </div>
+
+      <h4>C) Job dependencies — run B after A finishes successfully</h4>
+      <div class="code-block">
+        <div class="code-block-label">dependency_chain.sh</div>
+        <pre><span class="c-comment"># Submit first job and capture its ID</span>
+jid1=$(sbatch jobA.slurm | awk '{print $4}')
+
+<span class="c-comment"># Submit second job only if jobA exits cleanly</span>
+sbatch --dependency=afterok:${jid1} jobB.slurm</pre>
+      </div>
+
+      <h3 id="resources">3.4 Requesting the right resources</h3>
+      <ul>
+        <li><strong>Time:</strong> be realistic — shorter jobs queue faster. Use previous <code>sacct</code> records to calibrate.</li>
+        <li><strong>CPUs:</strong> for pure Python/R without native multi-threading, 1–2 cores are often enough. Use <code>--cpus-per-task</code> for OpenMP, <code>--ntasks</code> for MPI.</li>
+        <li><strong>Memory:</strong> start modestly; inspect <code>MaxRSS</code> from <code>sacct</code> after a test run and adjust.</li>
+        <li><strong>Single-node shared memory:</strong> <code>-N 1 --cpus-per-task=X</code>.</li>
+        <li><strong>Multi-node MPI:</strong> <code>-N N --ntasks-per-node=T</code>.</li>
+      </ul>
+      <div class="callout info">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div><strong>Pro tip:</strong> Avoid <code>--exclusive</code> unless you genuinely need the entire node. Exclusive allocation reduces throughput and lowers your scheduling priority.</div>
+      </div>
+
+      <h3 id="monitoring">3.5 Monitoring &amp; Logs</h3>
+      <div class="code-block">
+        <div class="code-block-label">Useful monitoring commands</div>
+        <pre><span class="c-comment"># Cluster &amp; queue status</span>
+<span class="c-cmd">sinfo</span>
+<span class="c-cmd">squeue</span> -u $USER
+
+<span class="c-comment"># Inspect a specific job</span>
+<span class="c-cmd">scontrol</span> show job &lt;jobid&gt;
+
+<span class="c-comment"># Accounting history for a job</span>
+<span class="c-cmd">sacct</span> -j &lt;jobid&gt; \
+  --format=JobID,JobName%20,Partition,State,Elapsed, \
+           Timelimit,AllocTRES%30,ReqMem,MaxRSS,ExitCode</pre>
+      </div>
+      <p>Stdout and stderr go to <code>slurm-%j.out</code> by default; customise with <code>-o</code> and <code>-e</code> in your script header.</p>
+
+      <!-- BEST PRACTICES -->
+      <h2 id="practices"><i class="fa-solid fa-medal" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>Best Practices &amp; Etiquette</h2>
+      <ul>
+        <li><strong>Develop small, run big:</strong> always test with small inputs before submitting large jobs.</li>
+        <li><strong>Use SCRATCH for I/O:</strong> read input from and write output to <code>/data/{USER}/</code>, never from <code>$HOME</code>.</li>
+        <li><strong>Keep environments portable:</strong> activate conda environments or load modules inside your job script.</li>
+        <li><strong>Clean up SCRATCH:</strong> copy important results to your local storage and delete intermediate files.</li>
+        <li><strong>One process per CPU unless threaded:</strong> do not oversubscribe cores.</li>
+        <li><strong>Version control your scripts:</strong> keep job scripts in a personal Git repository; include <code>--version</code> outputs in logs.</li>
+        <li><strong>Implement checkpointing</strong> for long runs so you can resume from the last checkpoint if a job is interrupted.</li>
+        <li><strong>Cite the cluster</strong> in publications (ask the support team for the citation text).</li>
+      </ul>
+
+      <!-- TROUBLESHOOTING -->
+      <h2 id="troubleshoot"><i class="fa-solid fa-wrench" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>Troubleshooting</h2>
+      <ul>
+        <li><strong>Job stuck in pending (PD):</strong> check <code>squeue -u $USER</code> — the REASON column indicates the cause (e.g., <code>Resources</code> = waiting for resources, <code>Priority</code> = other jobs queued ahead).</li>
+        <li><strong>Job fails immediately:</strong> check <code>slurm-&lt;jobid&gt;.out</code> for error messages. Common causes: wrong paths, missing modules, exceeded memory.</li>
+        <li><strong>Out of memory:</strong> inspect <code>MaxRSS</code> with <code>sacct</code> and increase <code>--mem</code> in your script.</li>
+        <li><strong>Cannot connect via SSH:</strong> ensure you are on the IMBB VPN, then try <code>ssh username@139.91.75.141</code>.</li>
+        <li><strong>MFA issues:</strong> sync your device clock — Google Authenticator codes are time-sensitive.</li>
+      </ul>
+      <div class="callout info">
+        <i class="fa-solid fa-envelope"></i>
+        <div>For persistent issues, contact the HPC team at <a href="mailto:hpc-support@imbb.forth.gr">hpc-support@imbb.forth.gr</a> with your job ID, the error message, and the job script.</div>
+      </div>
+
+      <!-- QUICK REFERENCE -->
+      <h2 id="cheatsheet"><i class="fa-solid fa-bolt" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>Quick Reference (Cheat Sheet)</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item"><div class="cmd">sbatch job.sh</div><div class="desc">Submit a job script</div></div>
+        <div class="cheat-item"><div class="cmd">squeue -u $USER</div><div class="desc">See your running/queued jobs</div></div>
+        <div class="cheat-item"><div class="cmd">scancel &lt;jobid&gt;</div><div class="desc">Cancel a job</div></div>
+        <div class="cheat-item"><div class="cmd">sinfo</div><div class="desc">Partition &amp; node status</div></div>
+        <div class="cheat-item"><div class="cmd">sacct -j &lt;jobid&gt;</div><div class="desc">Job accounting info</div></div>
+        <div class="cheat-item"><div class="cmd">scontrol show job &lt;id&gt;</div><div class="desc">Full job details</div></div>
+        <div class="cheat-item"><div class="cmd">ssh user@hibu.imbb.gr</div><div class="desc">Login (on IMBB network)</div></div>
+        <div class="cheat-item"><div class="cmd">ssh user@139.91.75.141</div><div class="desc">Login via IP (VPN required)</div></div>
+        <div class="cheat-item"><div class="cmd">rsync -avP ./data/ user@139.91.75.141:/data/user/</div><div class="desc">Transfer files to HIBU</div></div>
+        <div class="cheat-item"><div class="cmd">squeue -p long</div><div class="desc">Jobs in the long partition</div></div>
+      </div>
+
+      <!-- TEMPLATES -->
+      <h2 id="templates"><i class="fa-solid fa-file-code" style="color:var(--primary);margin-right:10px;font-size:22px;"></i>Job Templates</h2>
+      <p>Copy and adapt the templates below. Remember to replace <code>{USER}</code> with your actual username and adjust resources to match your workload.</p>
+
+      <h4>RNA-seq alignment (STAR, 16 cores)</h4>
+      <div class="code-block">
+        <div class="code-block-label">rnaseq_star.sh</div>
+        <pre><span class="c-comment">#!/bin/bash</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--job-name="star_align"</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--partition=long</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--nodes=1</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--cpus-per-task=16</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--mem=64G</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--time=08:00:00</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">-o logs/star_%j.out</span>
+
+SAMPLE=$1
+GENOME=/data/${USER}/refs/genome_index/
+
+STAR --runThreadN 16 \
+     --genomeDir    ${GENOME} \
+     --readFilesIn  /data/${USER}/fastq/${SAMPLE}_R1.fq.gz \
+                    /data/${USER}/fastq/${SAMPLE}_R2.fq.gz \
+     --readFilesCommand zcat \
+     --outSAMtype   BAM SortedByCoordinate \
+     --outFileNamePrefix /data/${USER}/aligned/${SAMPLE}_</pre>
+      </div>
+
+      <h4>Generic Python script (4 cores, 16 GB)</h4>
+      <div class="code-block">
+        <div class="code-block-label">python_job.sh</div>
+        <pre><span class="c-comment">#!/bin/bash</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--job-name="py_analysis"</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--partition=long</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--nodes=1</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--cpus-per-task=4</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--mem=16G</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">--time=06:00:00</span>
+<span class="c-flag">#SBATCH</span> <span class="c-value">-o slurm-%j.out</span>
+
+conda activate myenv
+
+python myscript.py \
+  --input  /data/${USER}/data/input.csv \
+  --output /data/${USER}/results/</pre>
+      </div>
+
+    </div><!-- /hpc-body -->
+  </div><!-- /hpc-layout -->
+</section>
+
+<!-- CTA -->
+<div class="cta-strip" style="padding:40px;margin:0 auto 60px;">
+  <h2>Need an HPC account?</h2>
+  <p>Email the support team with your affiliation and intended workloads to request access.</p>
+  <a href="mailto:hpc-support@imbb.forth.gr" class="btn btn-primary">hpc-support@imbb.forth.gr</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

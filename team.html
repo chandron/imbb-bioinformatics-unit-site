@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Team — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+            <img src="imbb-logo.jpeg" alt="IMBB-FORTH" style="height:44px;width:auto;background:#fff;padding:3px 8px;border-radius:7px;display:block;">
+      <div class="nav-brand-text">Bioinformatics Unit <span>Core Facility · IMBB-FORTH</span></div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html" class="active">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="index.html#contact" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Team</div>
+    <h1>Our Team</h1>
+    <p>The people behind the pipelines. We combine expertise in computational biology, statistics, and software engineering.</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<style>
+  .team-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  /* Center bottom row when 5 cards in a 3-col grid */
+  .team-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+  }
+  .team-grid-5 .team-card:nth-child(1) { grid-column: 1 / 3; }
+  .team-grid-5 .team-card:nth-child(2) { grid-column: 3 / 5; }
+  .team-grid-5 .team-card:nth-child(3) { grid-column: 5 / 7; }
+  .team-grid-5 .team-card:nth-child(4) { grid-column: 2 / 4; }
+  .team-grid-5 .team-card:nth-child(5) { grid-column: 4 / 6; }
+  @media (max-width: 900px) {
+    .team-grid-5 { grid-template-columns: 1fr; }
+    .team-grid-5 .team-card:nth-child(n) { grid-column: auto; }
+  }
+</style>
+
+<section class="section">
+  <div class="section-label">Meet the Unit</div>
+  <h2>Team Members</h2>
+  <p class="section-desc">The people behind the pipelines — combining expertise in computational biology, genomics, data management, and infrastructure.</p>
+
+  <div class="team-grid-5">
+
+    <!-- Christos Andronis -->
+    <div class="team-card anim-fade-up">
+      <div class="team-avatar">
+        <img src="https://www.imbb.forth.gr/files/repository/20250630132412_ChristosAndronis.jpg" alt="Christos Andronis">
+      </div>
+      <h3>Christos Andronis</h3>
+      <div class="role">Bioinformatics Lead</div>
+      <p>Leads the Bioinformatics Unit at IMBB-FORTH. Previously at Deus ex Machina, Biovista, and Protein Pathways, Inc. His background spans omics data analysis, biomedical data integration using ontological frameworks and FAIR principles, and drug repurposing.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a href="mailto:ch.andronis@imbb.forth.gr" class="contact-link">✉ Email →</a>
+        <a href="member-christos-andronis.html" class="contact-link" style="color:var(--accent);">More →</a>
+      </div>
+    </div>
+
+    <!-- Pantelis Topalis -->
+    <div class="team-card anim-fade-up anim-delay-1">
+      <div class="team-avatar">
+        <img src="https://www.imbb.forth.gr/files/repository/20240923150051_6c40637f76178b8285ca809948d5711f_L.jpg" alt="Pantelis Topalis">
+      </div>
+      <h3>Pantelis Topalis</h3>
+      <div class="role">Senior Staff Scientist</div>
+      <p>Research interests include gene expression and regulation from high-throughput sequencing data, genome assembly and annotation with a focus on insects and human pathogens, and the development of bioinformatics tools using ontologies and semantic approaches.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a href="mailto:topalis@imbb.forth.gr" class="contact-link">✉ Email →</a>
+        <a href="member-pantelis-topalis.html" class="contact-link" style="color:var(--accent);">More →</a>
+      </div>
+    </div>
+
+    <!-- George Papagiannakis -->
+    <div class="team-card anim-fade-up anim-delay-2">
+      <div class="team-avatar">
+        <img src="https://www.imbb.forth.gr/files/repository/20241104145022_21af8e4730dd4e14142c6fc7f3cea199_L.jpg" alt="George Papagiannakis">
+      </div>
+      <h3>George Papagiannakis</h3>
+      <div class="role">Facility Member</div>
+      <p>Member of the Bioinformatics Unit at IMBB-FORTH, contributing to the unit's computational support services for research groups.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a href="mailto:papagian@imbb.forth.gr" class="contact-link">✉ Email →</a>
+        <a href="member-george-papagiannakis.html" class="contact-link" style="color:var(--accent);">More →</a>
+      </div>
+    </div>
+
+    <!-- Manolis Dialynas -->
+    <div class="team-card anim-fade-up anim-delay-1">
+      <div class="team-avatar">
+        <img src="https://www.imbb.forth.gr/files/repository/20241108160829_8c9ca86295c2bfde389cce56a0344d42_L.jpg" alt="Manolis Dialynas">
+      </div>
+      <h3>Manolis Dialynas</h3>
+      <div class="role">Data Management &amp; Analysis</div>
+      <p>Responsible for data management and analysis within the Bioinformatics Unit, supporting research groups with computational data workflows.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a href="mailto:ed@imbb.forth.gr" class="contact-link">✉ Email →</a>
+        <a href="member-manolis-dialynas.html" class="contact-link" style="color:var(--accent);">More →</a>
+      </div>
+    </div>
+
+    <!-- Electra Tsaglioti -->
+    <div class="team-card anim-fade-up anim-delay-2">
+      <div class="team-avatar">
+        <img src="https://www.imbb.forth.gr/files/repository/20260119125157_ElectraTsaglioti.jpg" alt="Electra Tsaglioti">
+      </div>
+      <h3>Electra Tsaglioti</h3>
+      <div class="role">Special Research Assistant</div>
+      <p>Bioinformatics Specialist supporting the unit's analysis services and research activities at IMBB-FORTH.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <a href="mailto:electra_tsaglioti@imbb.forth.gr" class="contact-link">✉ Email →</a>
+        <a href="member-electra-tsaglioti.html" class="contact-link" style="color:var(--accent);">More →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT THE UNIT -->
+<section style="max-width:var(--max-w);margin:0 auto;padding:0 40px 80px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div class="card" style="border-left:4px solid var(--primary);">
+      <h3>About the Unit</h3>
+      <p style="margin-top:8px;">The Bioinformatics Unit is a core facility of the Institute of Molecular Biology and Biotechnology (IMBB) at the Foundation for Research and Technology - Hellas (FORTH) in Heraklion, Crete. We provide computational analysis services and training to all IMBB research groups and affiliated University of Crete laboratories.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--accent);">
+      <h3>Our Mission</h3>
+      <p style="margin-top:8px;">To enable biology labs to extract maximum biological insight from high-throughput data through expert computational analysis, accessible self-service tools, and education. We believe every biologist should be empowered to understand and interact with their data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Want to join the team?</h2>
+  <p>Check the IMBB careers page for open positions, or contact us about internship opportunities.</p>
+  <a href="https://www.imbb.forth.gr/en/career/" target="_blank" class="btn btn-primary" style="background:var(--accent);">IMBB Careers →</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

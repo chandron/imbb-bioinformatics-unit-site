@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Services — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2C8 6 16 10 12 14C8 18 16 22 12 22"/><path d="M12 2C16 6 8 10 12 14C16 18 8 22 12 22"/><line x1="7" y1="5" x2="17" y2="5" opacity=".5"/><line x1="6" y1="9" x2="18" y2="9" opacity=".5"/><line x1="7" y1="13" x2="17" y2="13" opacity=".5"/><line x1="6" y1="17" x2="18" y2="17" opacity=".5"/></svg>
+      </div>
+      <div class="nav-brand-text">
+        Bioinformatics Unit
+        <span>IMBB-FORTH</span>
+      </div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="request.html" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Services</div>
+    <h1>Our Services</h1>
+    <p>End-to-end computational support for your biology project — from raw data to publication-ready results.</p>
+  </div>
+</section>
+
+<!-- SERVICES DETAIL -->
+<section class="section">
+
+  <!-- RNA-seq -->
+  <div class="card anim-fade-up" style="margin-bottom:24px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;">
+    <div class="card-icon" style="margin-bottom:0;width:56px;height:56px;font-size:26px;">🧬</div>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:10px;">RNA-seq &amp; Transcriptomics</h3>
+      <p style="margin-bottom:14px;">Complete transcriptomic analysis from raw FASTQ files to biological interpretation. We work with both bulk and single-cell RNA-seq data.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+        <div style="background:var(--primary-light);border-radius:10px;padding:16px;">
+          <strong style="font-size:13px;display:block;margin-bottom:4px;">What we deliver</strong>
+          <p style="font-size:13px;color:var(--text-muted);margin:0;">Quality control reports, normalized counts, differential expression tables, volcano/MA plots, heatmaps, GO/KEGG enrichment results, and pathway visualizations.</p>
+        </div>
+        <div style="background:var(--accent-light);border-radius:10px;padding:16px;">
+          <strong style="font-size:13px;display:block;margin-bottom:4px;">Tools we use</strong>
+          <p style="font-size:13px;color:var(--text-muted);margin:0;">STAR, HISAT2, Salmon, DESeq2, edgeR, clusterProfiler, GSEA, Seurat (scRNA-seq), and custom R/Bioconductor pipelines.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Genomics -->
+  <div class="card anim-fade-up anim-delay-1" style="margin-bottom:24px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;">
+    <div class="card-icon" style="margin-bottom:0;width:56px;height:56px;font-size:26px;">🔬</div>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:10px;">Genomics &amp; Variant Calling</h3>
+      <p style="margin-bottom:14px;">From whole-genome/exome sequencing to variant annotation and population genetics. We handle alignment, calling, filtering, and biological interpretation.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+        <div style="background:var(--primary-light);border-radius:10px;padding:16px;">
+          <strong style="font-size:13px;display:block;margin-bottom:4px;">What we deliver</strong>
+          <p style="font-size:13px;color:var(--text-muted);margin:0;">Alignment statistics, VCF files with annotated variants, quality-filtered call sets, variant effect predictions, and population structure analyses.</p>
+        </div>
+        <div style="background:var(--accent-light);border-radius:10px;padding:16px;">
+          <strong style="font-size:13px;display:block;margin-bottom:4px;">Tools we use</strong>
+          <p style="font-size:13px;color:var(--text-muted);margin:0;">BWA-MEM2, GATK HaplotypeCaller, FreeBayes, DeepVariant, VEP/SnpEff, PLINK, and nf-core/sarek pipeline.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Training -->
+  <div class="card anim-fade-up anim-delay-2" style="margin-bottom:24px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;">
+    <div class="card-icon" style="margin-bottom:0;width:56px;height:56px;font-size:26px;">🎓</div>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:10px;">Training &amp; Workshops</h3>
+      <p style="margin-bottom:14px;">Periodic workshops and hands-on tutorials designed for wet-lab biologists who want to gain computational skills. Open to IMBB and University of Crete members.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+        <div style="background:var(--primary-light);border-radius:10px;padding:16px;">
+          <strong style="font-size:13px;display:block;margin-bottom:4px;">Topics we cover</strong>
+          <p style="font-size:13px;color:var(--text-muted);margin:0;">Introduction to R &amp; Bioconductor, Linux command line basics, RNA-seq analysis from scratch, reproducible research with R Markdown, and data visualization.</p>
+        </div>
+        <div style="background:var(--accent-light);border-radius:10px;padding:16px;">
+          <strong style="font-size:13px;display:block;margin-bottom:4px;">Format</strong>
+          <p style="font-size:13px;color:var(--text-muted);margin:0;">Half-day to full-day workshops with live coding, practice datasets, and take-home exercises. We also offer drop-in office hours for quick questions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Have a project in mind?</h2>
+  <p>Tell us about your experiment and we'll get back to you with a plan.</p>
+  <a href="request.html" class="btn btn-primary" style="background:var(--accent);">Request Analysis →</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

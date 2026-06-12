@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Resources — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2C8 6 16 10 12 14C8 18 16 22 12 22"/><path d="M12 2C16 6 8 10 12 14C16 18 8 22 12 22"/><line x1="7" y1="5" x2="17" y2="5" opacity=".5"/><line x1="6" y1="9" x2="18" y2="9" opacity=".5"/><line x1="7" y1="13" x2="17" y2="13" opacity=".5"/><line x1="6" y1="17" x2="18" y2="17" opacity=".5"/></svg>
+      </div>
+      <div class="nav-brand-text">
+        Bioinformatics Unit
+        <span>IMBB-FORTH</span>
+      </div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="resources.html" class="active">Resources</a>
+      <a href="team.html">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="request.html" class="nav-cta">Request Analysis</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Resources</div>
+    <h1>Biologist's Toolkit</h1>
+    <p>Curated web tools for self-service analysis. Most are browser-based and require no installation or coding experience.</p>
+  </div>
+</section>
+
+<!-- RESOURCES WITH TABS -->
+<section class="section">
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('enrichment')">Functional Enrichment</button>
+    <button class="tab-btn" onclick="showTab('browsers')">Genomes &amp; Databases</button>
+    <button class="tab-btn" onclick="showTab('viz')">Visualization</button>
+    <button class="tab-btn" onclick="showTab('networks')">Networks &amp; Pathways</button>
+    <button class="tab-btn" onclick="showTab('organisms')">Organism Databases</button>
+  </div>
+
+  <!-- ==================== ENRICHMENT ==================== -->
+  <div class="link-grid tab-content active-tab" id="tab-enrichment">
+    <a href="https://biit.cs.ut.ee/gprofiler/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">🎯</div>
+      <div class="link-info"><h4>g:Profiler</h4><p>GO, KEGG, Reactome, WikiPathways enrichment from a gene list</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://maayanlab.cloud/Enrichr/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">📚</div>
+      <div class="link-info"><h4>Enrichr</h4><p>200+ gene-set libraries with instant enrichment analysis</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://david.ncifcrf.gov/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">🏛️</div>
+      <div class="link-info"><h4>DAVID</h4><p>Classic functional annotation, clustering, and gene ID conversion</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.gsea-msigdb.org/gsea/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">📈</div>
+      <div class="link-info"><h4>GSEA</h4><p>Ranked gene set enrichment analysis (Broad Institute)</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://pantherdb.org/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">🐾</div>
+      <div class="link-info"><h4>PANTHER</h4><p>Gene function classification and overrepresentation test</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.webgestalt.org/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">🌐</div>
+      <div class="link-info"><h4>WebGestalt</h4><p>ORA, GSEA, and network topology analysis in one interface</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://geneontology.org/" target="_blank" class="link-card">
+      <div class="link-icon enrichment">🏷️</div>
+      <div class="link-info"><h4>Gene Ontology</h4><p>Official GO resource — annotations, ontology browser, enrichment</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://metascape.org" target="_blank" class="link-card">
+      <div class="link-icon enrichment">🔭</div>
+      <div class="link-info"><h4>Metascape</h4><p>Multi-gene list enrichment with network analysis and auto-annotation</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- ==================== BROWSERS ==================== -->
+  <div class="tab-content" id="tab-browsers">
+
+    <div style="margin-bottom:28px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">Data repositories</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank" class="link-card">
+          <div class="link-icon browser">💾</div>
+          <div class="link-info"><h4>GEO (NCBI)</h4><p>Public expression datasets, GEO2R for quick comparisons</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.ebi.ac.uk/ena/browser/" target="_blank" class="link-card">
+          <div class="link-icon browser">📂</div>
+          <div class="link-info"><h4>ENA (EBI)</h4><p>European Nucleotide Archive — raw sequencing data</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.ncbi.nlm.nih.gov/sra" target="_blank" class="link-card">
+          <div class="link-icon browser">🗄️</div>
+          <div class="link-info"><h4>SRA (NCBI)</h4><p>Sequence Read Archive — raw reads from published studies</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">Genome browsers &amp; registries</div>
+      <div class="link-grid">
+        <a href="https://www.ensembl.org/" target="_blank" class="link-card">
+          <div class="link-icon browser">🧭</div>
+          <div class="link-info"><h4>Ensembl</h4><p>Genome browser, gene annotations, comparative genomics, BioMart</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://genome.ucsc.edu/" target="_blank" class="link-card">
+          <div class="link-icon browser">🗺️</div>
+          <div class="link-info"><h4>UCSC Genome Browser</h4><p>Custom tracks, BLAT search, table browser, track hubs</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== VISUALIZATION ==================== -->
+  <div class="tab-content" id="tab-viz">
+
+    <div style="margin-bottom:26px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><i class="fa-solid fa-chart-area" style="color:var(--primary);font-size:13px;"></i><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);">Volcano plots</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <div class="link-grid">
+        <a href="https://huygens.science.uva.nl/VolcaNoseR/" target="_blank" class="link-card">
+          <div class="link-icon viz">🌋</div>
+          <div class="link-info"><h4>VolcaNoseR</h4><p>Dedicated volcano plot tool — paste your DEG table directly</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.bioinformatics.com.cn/en" target="_blank" class="link-card">
+          <div class="link-icon viz">🎨</div>
+          <div class="link-info"><h4>Bioinformatics.com.cn</h4><p>Volcano, MA plots, bar charts, and more — no code needed</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:26px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><i class="fa-solid fa-circle-dot" style="color:var(--primary);font-size:13px;"></i><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);">Venn &amp; Euler diagrams</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <div class="link-grid">
+        <a href="https://bioinformatics.psb.ugent.be/webtools/Venn/" target="_blank" class="link-card">
+          <div class="link-icon viz">⭕</div>
+          <div class="link-info"><h4>Venn diagram (PSB Ghent)</h4><p>Up to 4 gene sets, publication-ready export</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="http://www.interactivenn.net/" target="_blank" class="link-card">
+          <div class="link-icon viz">🔵</div>
+          <div class="link-info"><h4>InteractiVenn</h4><p>Interactive Venn diagrams supporting up to 6 gene sets</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://eunoia.bz/app/" target="_blank" class="link-card">
+          <div class="link-icon viz">🫧</div>
+          <div class="link-info"><h4>eulerr</h4><p>Proportional Euler diagrams — visually cleaner than standard Venn</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:26px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><i class="fa-solid fa-table-cells" style="color:var(--primary);font-size:13px;"></i><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);">Heatmaps</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <div class="link-grid">
+        <a href="https://heatmapper2.ca/" target="_blank" class="link-card">
+          <div class="link-icon viz">🟥</div>
+          <div class="link-info"><h4>Heatmapper2</h4><p>Purpose-built heatmap tool for biologists, multiple display types</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://biit.cs.ut.ee/clustvis/" target="_blank" class="link-card">
+          <div class="link-icon viz">📊</div>
+          <div class="link-info"><h4>ClustVis</h4><p>Heatmap and PCA in one tool, widely used in RNA-seq papers</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://software.broadinstitute.org/morpheus/" target="_blank" class="link-card">
+          <div class="link-icon viz">🔥</div>
+          <div class="link-info"><h4>Morpheus</h4><p>Interactive heatmaps in the browser — cluster, filter, annotate</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:26px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><i class="fa-solid fa-code-branch" style="color:var(--primary);font-size:13px;"></i><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);">Phylogenetic trees</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <div class="link-grid">
+        <a href="https://itol.embl.de/" target="_blank" class="link-card">
+          <div class="link-icon viz">🌳</div>
+          <div class="link-info"><h4>iTOL (Interactive Tree of Life)</h4><p>The standard for annotating and publishing phylogenetic trees</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://phylo.io/" target="_blank" class="link-card">
+          <div class="link-icon viz">🌿</div>
+          <div class="link-info"><h4>Phylo.io</h4><p>Simpler tree viewer, good for quick visualization and comparison</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><i class="fa-solid fa-pen-ruler" style="color:var(--primary);font-size:13px;"></i><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--primary);">Illustrations</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <div class="link-grid">
+        <a href="https://biorender.com/" target="_blank" class="link-card">
+          <div class="link-icon viz">✏️</div>
+          <div class="link-info"><h4>BioRender</h4><p>Professional scientific illustrations and graphical abstracts</p></div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+      <div class="link-info"><h4>STRING</h4><p>Protein–protein interaction networks and functional enrichment</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://reactome.org/" target="_blank" class="link-card">
+      <div class="link-icon viz">🗂️</div>
+      <div class="link-info"><h4>Reactome</h4><p>Pathway database with analysis, visualization, and overlay tools</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.bioinformatics.com.cn/en" target="_blank" class="link-card">
+      <div class="link-icon viz">🎨</div>
+      <div class="link-info"><h4>Bioinformatics.com.cn</h4><p>Volcano plots, heatmaps, Venn diagrams, and more — no code needed</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.cytoscape.org/" target="_blank" class="link-card">
+      <div class="link-icon viz">🔄</div>
+      <div class="link-info"><h4>Cytoscape</h4><p>Desktop app for network visualization and analysis (free)</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://software.broadinstitute.org/morpheus/" target="_blank" class="link-card">
+      <div class="link-icon viz">🔥</div>
+      <div class="link-info"><h4>Morpheus</h4><p>Interactive heatmaps in the browser — cluster, filter, annotate</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.kegg.jp/kegg/pathway.html" target="_blank" class="link-card">
+      <div class="link-icon viz">🗺️</div>
+      <div class="link-info"><h4>KEGG Pathway</h4><p>Pathway maps for metabolism, signaling, disease, and more</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://biorender.com/" target="_blank" class="link-card">
+      <div class="link-icon viz">✏️</div>
+      <div class="link-info"><h4>BioRender</h4><p>Professional scientific illustrations and graphical abstracts</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.bindingdb.org/" target="_blank" class="link-card">
+      <div class="link-icon viz">💊</div>
+      <div class="link-info"><h4>BindingDB</h4><p>Measured binding affinity data for drug-target interactions</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- ==================== NETWORKS & PATHWAYS ==================== -->
+  <div class="tab-content" id="tab-networks">
+    <div class="link-grid">
+      <a href="https://string-db.org/" target="_blank" class="link-card">
+        <div class="link-icon viz">🕸️</div>
+        <div class="link-info"><h4>STRING</h4><p>Protein–protein interaction networks and functional enrichment</p></div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://reactome.org/" target="_blank" class="link-card">
+        <div class="link-icon viz">🗂️</div>
+        <div class="link-info"><h4>Reactome</h4><p>Pathway database with analysis, visualization, and overlay tools</p></div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://www.cytoscape.org/" target="_blank" class="link-card">
+        <div class="link-icon viz">🔄</div>
+        <div class="link-info"><h4>Cytoscape</h4><p>Desktop app for network visualization and analysis (free)</p></div>
+        <span class="link-arrow">→</span>
+      </a>
+      <a href="https://www.kegg.jp/kegg/pathway.html" target="_blank" class="link-card">
+        <div class="link-icon viz">🗺️</div>
+        <div class="link-info"><h4>KEGG Pathway</h4><p>Pathway maps for metabolism, signaling, disease, and more</p></div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ==================== ORGANISMS ==================== -->
+  <div class="link-grid tab-content" id="tab-organisms">
+    <a href="https://flybase.org/" target="_blank" class="link-card">
+      <div class="link-icon organism">🪰</div>
+      <div class="link-info"><h4>FlyBase</h4><p>Drosophila melanogaster — genes, alleles, phenotypes, expression</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://wormbase.org/" target="_blank" class="link-card">
+      <div class="link-icon organism">🪱</div>
+      <div class="link-info"><h4>WormBase</h4><p>C. elegans &amp; related nematodes — genome, expression, phenotypes</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.arabidopsis.org/" target="_blank" class="link-card">
+      <div class="link-icon organism">🌱</div>
+      <div class="link-info"><h4>TAIR</h4><p>Arabidopsis thaliana — genome annotations, mutants, seed stocks</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.informatics.jax.org/" target="_blank" class="link-card">
+      <div class="link-icon organism">🐭</div>
+      <div class="link-info"><h4>Mouse Genome Informatics</h4><p>Mus musculus — gene expression, phenotypes, disease models</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://vectorbase.org/" target="_blank" class="link-card">
+      <div class="link-icon organism">🦟</div>
+      <div class="link-info"><h4>VectorBase</h4><p>Mosquitoes, ticks &amp; vectors — genomes, expression, population data</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+    <a href="https://zfin.org/" target="_blank" class="link-card">
+      <div class="link-icon organism">🐟</div>
+      <div class="link-info"><h4>ZFIN</h4><p>Zebrafish — genetic, genomic, and phenotype data</p></div>
+      <span class="link-arrow">→</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- TIP BOX -->
+<section style="max-width:var(--max-w);margin:0 auto;padding:0 40px 80px;">
+  <div style="background:var(--accent-light);border-radius:var(--radius);padding:32px 36px;border-left:4px solid var(--accent);">
+    <strong style="font-size:15px;display:block;margin-bottom:6px;">💡 Not sure where to start?</strong>
+    <p style="font-size:14px;color:var(--text-muted);margin:0;">If you have a list of differentially expressed genes and want to know what pathways or functions are enriched, <strong>g:Profiler</strong> or <strong>Enrichr</strong> are the fastest options — just paste your gene list and go. For ranked/pre-ranked analysis (e.g. by fold change), use <strong>GSEA</strong>. Come to our <a href="request.html">office hours</a> if you'd like a walkthrough.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Request Analysis — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2C8 6 16 10 12 14C8 18 16 22 12 22"/><path d="M12 2C16 6 8 10 12 14C16 18 8 22 12 22"/><line x1="7" y1="5" x2="17" y2="5" opacity=".5"/><line x1="6" y1="9" x2="18" y2="9" opacity=".5"/><line x1="7" y1="13" x2="17" y2="13" opacity=".5"/><line x1="6" y1="17" x2="18" y2="17" opacity=".5"/></svg>
+      </div>
+      <div class="nav-brand-text">
+        Bioinformatics Unit
+        <span>IMBB-FORTH</span>
+      </div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="request.html" class="nav-cta active">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Request Analysis</div>
+    <h1>Request an Analysis</h1>
+    <p>Tell us about your project and we'll get back to you with a plan and timeline.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-label">How It Works</div>
+  <h2>From Data to Discovery</h2>
+  <p class="section-desc">Our process is designed to be straightforward. Here's what to expect:</p>
+
+  <div class="workflow-steps">
+    <div class="step anim-fade-up">
+      <div class="step-num">1</div>
+      <h4>Submit Request</h4>
+      <p>Fill out the form below or email us. Include your experiment type, organism, and any specific questions you want answered.</p>
+    </div>
+    <div class="step anim-fade-up anim-delay-1">
+      <div class="step-num">2</div>
+      <h4>Consultation</h4>
+      <p>We schedule a brief meeting to discuss your goals, review experimental design, and agree on the analysis approach.</p>
+    </div>
+    <div class="step anim-fade-up anim-delay-2">
+      <div class="step-num">3</div>
+      <h4>Analysis</h4>
+      <p>We run the pipeline — quality control, alignment, quantification, statistical testing, and biological interpretation.</p>
+    </div>
+    <div class="step anim-fade-up anim-delay-3">
+      <div class="step-num">4</div>
+      <h4>Results &amp; Report</h4>
+      <p>You receive a detailed report with methods section, figures, processed data files, and code for reproducibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST FORM -->
+<section class="section" style="padding-top:0;">
+  <div style="display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;">
+
+    <div class="form-card">
+      <h3 style="font-size:22px;margin-bottom:4px;">Analysis Request Form</h3>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:28px;">All fields marked * are required. We typically respond within 2–3 working days.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" placeholder="e.g. Maria Papadopoulou">
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" placeholder="e.g. maria@imbb.forth.gr">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Lab / Group *</label>
+          <input type="text" placeholder="e.g. Bhatt Lab, IMBB">
+        </div>
+        <div class="form-group">
+          <label>Affiliation</label>
+          <select>
+            <option value="">Select…</option>
+            <option>IMBB-FORTH</option>
+            <option>University of Crete — Biology</option>
+            <option>University of Crete — Medicine</option>
+            <option>Other FORTH institute</option>
+            <option>External collaborator</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Analysis Type *</label>
+        <select>
+          <option value="">Select…</option>
+          <option>RNA-seq (bulk)</option>
+          <option>RNA-seq (single-cell)</option>
+          <option>WGS / WES — Variant calling</option>
+          <option>ChIP-seq / ATAC-seq</option>
+          <option>Functional enrichment / pathway analysis</option>
+          <option>Other (describe below)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Organism</label>
+          <input type="text" placeholder="e.g. Drosophila melanogaster">
+        </div>
+        <div class="form-group">
+          <label>Number of Samples</label>
+          <input type="text" placeholder="e.g. 12 (3 conditions × 4 replicates)">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Project Description *</label>
+        <textarea placeholder="Briefly describe your experiment, biological question, and what you'd like us to do. Include any relevant details about sequencing platform, read length, etc."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Data Location</label>
+        <input type="text" placeholder="e.g. /scratch/maria/rnaseq_2026/ or 'will transfer via USB'">
+      </div>
+
+      <div class="form-group">
+        <label>Timeline / Deadline</label>
+        <input type="text" placeholder="e.g. Need results by end of June for manuscript">
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;" onclick="alert('This is a demo form. In production, this would submit to your email or a backend.')">
+        Submit Request →
+      </button>
+    </div>
+
+    <!-- SIDEBAR INFO -->
+    <div>
+      <div class="card" style="margin-bottom:20px;border-left:4px solid var(--primary);">
+        <h3 style="font-size:16px;margin-bottom:8px;">📧 Prefer email?</h3>
+        <p style="font-size:14px;">Send your request directly to<br><a href="mailto:imbb_bioinfo@imbb.forth.gr" style="font-weight:600;">imbb_bioinfo@imbb.forth.gr</a></p>
+      </div>
+
+      <div class="card" style="margin-bottom:20px;border-left:4px solid var(--accent);">
+        <h3 style="font-size:16px;margin-bottom:8px;">🕐 Office Hours</h3>
+        <p style="font-size:14px;">Drop by for quick questions:<br><strong>Wednesdays, 14:00–16:00</strong><br>Room Δ032, Main FORTH building</p>
+      </div>
+
+      <div class="card" style="border-left:4px solid #4ADE80;">
+        <h3 style="font-size:16px;margin-bottom:8px;">💡 Tips for a smooth start</h3>
+        <p style="font-size:14px;line-height:1.7;">
+          • Know your organism and genome build<br>
+          • Have raw FASTQ files ready (or GEO accession)<br>
+          • Prepare a sample sheet with conditions and replicates<br>
+          • Think about your main biological question
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

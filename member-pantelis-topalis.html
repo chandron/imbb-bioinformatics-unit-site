@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Pantelis Topalis — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.profile-layout { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+.profile-sidebar { position: sticky; top: 80px; }
+.profile-photo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px; }
+.contact-block { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; }
+.contact-block h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 14px; font-weight: 700; }
+.contact-item { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 10px; color: var(--text); }
+.contact-item:last-child { margin-bottom: 0; }
+.contact-item a { color: var(--primary); word-break: break-all; }
+.contact-item a:hover { color: var(--accent); }
+.contact-icon { width: 32px; height: 32px; background: var(--primary-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.profile-body h2 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 16px; margin-top: 32px; }
+.profile-body h2:first-of-type { margin-top: 0; }
+.profile-body p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 16px; }
+@media (max-width: 900px) { .profile-layout { grid-template-columns: 1fr; } .profile-sidebar { position: static; } .profile-photo { max-width: 200px; } }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+            <img src="imbb-logo.jpeg" alt="IMBB-FORTH" style="height:44px;width:auto;background:#fff;padding:3px 8px;border-radius:7px;display:block;">
+      <div class="nav-brand-text">Bioinformatics Unit <span>Core Facility · IMBB-FORTH</span></div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html" class="active">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="index.html#contact" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> / <a href="team.html">Team</a> / Pantelis Topalis
+    </div>
+    <h1>Pantelis Topalis</h1>
+    <p>Senior Staff Scientist · IMBB-FORTH</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="profile-layout">
+
+    <aside class="profile-sidebar">
+      <img
+        src="https://www.imbb.forth.gr/files/repository/20240923150051_6c40637f76178b8285ca809948d5711f_L.jpg"
+        alt="Pantelis Topalis"
+        class="profile-photo"
+      >
+
+      <div class="contact-block">
+        <h4>Contact</h4>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <a href="tel:+302810391159">+30-2810-391159</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <a href="mailto:topalis@imbb.forth.gr">topalis@imbb.forth.gr</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <a href="https://www.imbb.forth.gr/bsg" target="_blank">imbb.forth.gr/bsg</a>
+        </div>
+      </div>
+
+      <a href="https://imbb.forth.gr/en/research/Pantelis-Topalis-Staff-Scientist--Bioinformatics.84/" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">Full Scientific Profile ↗</a>
+      <a href="team.html" class="btn btn-outline" style="width:100%;justify-content:center;">← Back to Team</a>
+    </aside>
+
+    <div class="profile-body anim-fade-up">
+      <h2>About</h2>
+      <p>The main interests of the group are (a) to analyze gene expression and regulation from high-throughput sequencing datasets and (b) to assemble, annotate and compare newly sequenced genomes with a special focus on insects and human pathogens. Other interests include the development of databases and bioinformatics tools using ontologies and other semantic approaches to promote interoperability between different but related datasets.</p>
+
+      <div style="background:var(--primary-light);border-radius:var(--radius);padding:24px;margin-top:16px;">
+        <p style="margin:0;font-size:14px;color:var(--text-muted);">For the full scientific profile including publications and research projects, please visit the <a href="https://imbb.forth.gr/en/research/Pantelis-Topalis-Staff-Scientist--Bioinformatics.84/" target="_blank">IMBB research profile page</a>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

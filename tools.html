@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Our Tools &amp; Resources — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.tool-card-full {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  transition: box-shadow var(--t);
+}
+.tool-card-full:hover { box-shadow: var(--shadow-lg); }
+
+.tool-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.tool-title-group { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.tool-icon-wrap {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.tool-icon-wrap.blue  { background: var(--primary-light); color: var(--primary); }
+.tool-icon-wrap.teal  { background: var(--teal-lt);        color: var(--teal); }
+.tool-icon-wrap.amber { background: var(--accent-light);   color: var(--accent); }
+
+.tool-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px; color: var(--text);
+}
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; padding: 5px 12px; border-radius: 100px;
+  white-space: nowrap;
+}
+.status-badge.live {
+  background: #DCFCE7; color: #15803D;
+  border: 1px solid #BBF7D0;
+}
+.status-badge.live::before {
+  content: ''; display: block;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22C55E;
+  animation: pulse-badge 2s infinite;
+}
+@keyframes pulse-badge { 0%,100%{opacity:1} 50%{opacity:.4} }
+.status-badge.soon {
+  background: var(--primary-light); color: var(--primary);
+  border: 1px solid var(--blue-200);
+}
+.status-badge.soon::before {
+  content: ''; display: block;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--primary); opacity: .5;
+}
+
+.tool-body p {
+  font-size: 15px; line-height: 1.75;
+  color: var(--text); margin-bottom: 16px;
+}
+.tool-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0;
+}
+.tool-tag {
+  font-size: 12px; font-weight: 600; padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--primary-light); color: var(--primary);
+  border: 1px solid var(--blue-200);
+}
+.tool-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  margin-top: 20px; flex-wrap: wrap; gap: 12px;
+}
+.tool-url {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--text-muted);
+  word-break: break-all;
+}
+.btn-launch {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--primary); color: #fff;
+  padding: 11px 22px; border-radius: var(--radius-sm);
+  font-size: 13.5px; font-weight: 700;
+  text-decoration: none; transition: all var(--t);
+  white-space: nowrap;
+}
+.btn-launch:hover { background: var(--primary-dark); color: #fff; transform: translateY(-1px); }
+.btn-launch.disabled {
+  background: var(--border); color: var(--text-muted);
+  cursor: not-allowed; pointer-events: none;
+}
+
+.coming-soon-box {
+  background: var(--primary-light);
+  border: 1px solid var(--blue-200);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  text-align: center;
+  margin-top: 12px;
+}
+.coming-soon-box h3 {
+  font-size: 17px; font-weight: 700; color: var(--text);
+  margin-bottom: 6px;
+}
+.coming-soon-box p { font-size: 14px; color: var(--text-muted); margin: 0; }
+.coming-soon-box a { color: var(--primary); font-weight: 600; }
+
+[data-theme="dark"] .tool-card-full { background: #161B22; border-color: #30363D; }
+[data-theme="dark"] .tool-card-full:hover { box-shadow: 0 12px 36px rgba(0,0,0,.35); }
+[data-theme="dark"] .tool-name { color: #E6EDF3; }
+[data-theme="dark"] .tool-body p { color: #C9D1D9; }
+[data-theme="dark"] .status-badge.live { background: #0D2010; color: #4ADE80; border-color: #166534; }
+[data-theme="dark"] .status-badge.soon { background: #1A2E47; color: #60A5FA; border-color: #30363D; }
+[data-theme="dark"] .tool-tag { background: #1A2E47; color: #60A5FA; border-color: #30363D; }
+[data-theme="dark"] .tool-footer { border-top-color: #30363D; }
+[data-theme="dark"] .tool-url { color: #8B949E; }
+[data-theme="dark"] .coming-soon-box { background: #1A2E47; border-color: #30363D; }
+[data-theme="dark"] .coming-soon-box h3 { color: #E6EDF3; }
+[data-theme="dark"] .coming-soon-box p { color: #8B949E; }
+[data-theme="dark"] .coming-soon-box a { color: #60A5FA; }
+
+@media (max-width: 700px) {
+  .tool-card-full { padding: 24px 20px; }
+  .tool-card-header { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="imbb-logo.jpeg" alt="IMBB-FORTH" style="height:44px;width:auto;background:#fff;padding:3px 8px;border-radius:7px;display:block;">
+      <div class="nav-brand-text">Bioinformatics Unit <span>Core Facility · IMBB-FORTH</span></div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html" class="active">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="index.html#contact" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Our Tools &amp; Resources</div>
+    <h1>Our Tools &amp; Resources</h1>
+    <p>Web apps and databases developed and maintained by the Bioinformatics Unit and collaborating groups at IMBB-FORTH.</p>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section">
+
+  <!-- dsRNA Analyzer -->
+  <div class="tool-card-full">
+    <div class="tool-card-header">
+      <div class="tool-title-group">
+        <div class="tool-icon-wrap blue">
+          <i class="fa-solid fa-dna"></i>
+        </div>
+        <div class="tool-name">dsRNA Analyzer</div>
+      </div>
+      <span class="status-badge live">Live</span>
+    </div>
+    <div class="tool-body">
+      <p>A web app for designing double-stranded RNA (dsRNA) sequences with a focus on safety for non-target organisms (NTOs). Candidate sequences are screened against NTO databases to flag potential cross-reactivity before synthesis, reducing the risk of unintended effects in RNAi-based applications.</p>
+      <p>Developed at IMBB-FORTH as part of ongoing work on RNAi pest management and vector biology.</p>
+      <div class="tool-tags">
+        <span class="tool-tag">RNAi</span>
+        <span class="tool-tag">dsRNA design</span>
+        <span class="tool-tag">Non-target safety</span>
+        <span class="tool-tag">Pest management</span>
+        <span class="tool-tag">Insects</span>
+      </div>
+    </div>
+    <div class="tool-footer">
+      <span class="tool-url">dsrna-analyzer.org:3000/dsrna-analyzer</span>
+      <a href="http://dsrna-analyzer.org:3000/dsrna-analyzer" target="_blank" rel="noopener" class="btn-launch">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch App
+      </a>
+    </div>
+  </div>
+
+  <!-- dsRNA Specificity -->
+  <div class="tool-card-full">
+    <div class="tool-card-header">
+      <div class="tool-title-group">
+        <div class="tool-icon-wrap teal">
+          <i class="fa-solid fa-crosshairs"></i>
+        </div>
+        <div class="tool-name">dsRNA Specificity App</div>
+      </div>
+      <span class="status-badge soon">Coming Soon</span>
+    </div>
+    <div class="tool-body">
+      <p>A companion tool to the dsRNA Analyzer. Where the Analyzer checks safety against non-target organisms, this app screens candidate dsRNA sequences for specificity within the target organism — ensuring the sequence hits the intended gene and avoids off-target effects within the same genome.</p>
+      <p>Currently in development. Contact us to be notified at launch.</p>
+      <div class="tool-tags">
+        <span class="tool-tag">RNAi</span>
+        <span class="tool-tag">dsRNA design</span>
+        <span class="tool-tag">Off-target analysis</span>
+        <span class="tool-tag">Gene silencing</span>
+      </div>
+    </div>
+    <div class="tool-footer">
+      <span class="tool-url">URL to be announced</span>
+      <a class="btn-launch disabled">
+        <i class="fa-solid fa-clock"></i> In Development
+      </a>
+    </div>
+  </div>
+
+  <!-- Arthropod P450 Docuwiki -->
+  <div class="tool-card-full">
+    <div class="tool-card-header">
+      <div class="tool-title-group">
+        <div class="tool-icon-wrap amber">
+          <i class="fa-solid fa-bug"></i>
+        </div>
+        <div class="tool-name">Arthropod P450 Docuwiki</div>
+      </div>
+      <span class="status-badge live">Live</span>
+    </div>
+    <div class="tool-body">
+      <p>A community-maintained resource for arthropod cytochrome P450 (CYP) enzyme nomenclature and sequences. Covers insects, ticks, and other arthropods with standardized naming conventions, sequence alignments, phylogenetic classifications, and links to associated literature.</p>
+      <p>Developed by the Vector Biology and Bioinformatics groups at IMBB-FORTH. Contributions from the arthropod P450 research community are welcome.</p>
+      <div class="tool-tags">
+        <span class="tool-tag">Cytochrome P450</span>
+        <span class="tool-tag">Arthropods</span>
+        <span class="tool-tag">Nomenclature</span>
+        <span class="tool-tag">Insects</span>
+        <span class="tool-tag">Ticks</span>
+        <span class="tool-tag">Detoxification</span>
+      </div>
+    </div>
+    <div class="tool-footer">
+      <span class="tool-url">arthropodp450.eu</span>
+      <a href="https://arthropodp450.eu/doku.php?id=introduction_nomenclature" target="_blank" rel="noopener" class="btn-launch">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Wiki
+      </a>
+    </div>
+  </div>
+
+  <!-- More tools callout -->
+  <div class="coming-soon-box">
+    <h3><i class="fa-solid fa-circle-plus" style="margin-right:8px;color:var(--primary);"></i>More tools in the pipeline</h3>
+    <p>Additional tools and databases are under development. To suggest a collaboration or request a custom tool for your research, <a href="mailto:imbb_bioinfo@imbb.forth.gr">get in touch</a>.</p>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<div class="cta-strip" style="padding:40px;margin:0 auto 60px;">
+  <h2>Need a custom tool for your data?</h2>
+  <p>We develop bespoke scripts, web apps, and databases for research groups at IMBB and the University of Crete.</p>
+  <a href="index.html#contact" class="btn btn-primary">Submit a Request</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

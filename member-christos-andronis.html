@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Christos Andronis — Bioinformatics Unit · IMBB-FORTH</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.profile-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.profile-sidebar {
+  position: sticky;
+  top: 80px;
+}
+.profile-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.contact-block {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.contact-block h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.contact-item:last-child { margin-bottom: 0; }
+.contact-item a { color: var(--primary); word-break: break-all; }
+.contact-item a:hover { color: var(--accent); }
+.contact-icon {
+  width: 32px; height: 32px;
+  background: var(--primary-light);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.profile-body h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+.profile-body h2:first-of-type { margin-top: 0; }
+.profile-body p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.pub-list { list-style: none; }
+.pub-list li {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pub-list li:last-child { border-bottom: none; }
+.pub-list .pub-title {
+  color: var(--text);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+.pub-list .pub-doi a {
+  color: var(--primary);
+  font-size: 12px;
+}
+.pub-list .pub-doi a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .profile-layout { grid-template-columns: 1fr; }
+  .profile-sidebar { position: static; }
+  .profile-photo { max-width: 200px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+            <img src="imbb-logo.jpeg" alt="IMBB-FORTH" style="height:44px;width:auto;background:#fff;padding:3px 8px;border-radius:7px;display:block;">
+      <div class="nav-brand-text">Bioinformatics Unit <span>Core Facility · IMBB-FORTH</span></div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html" class="active">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="index.html#contact" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> / <a href="team.html">Team</a> / Christos Andronis
+    </div>
+    <h1>Christos Andronis</h1>
+    <p>Bioinformatics Lead · IMBB-FORTH</p>
+  </div>
+</section>
+
+<!-- PROFILE CONTENT -->
+<section class="section">
+  <div class="profile-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="profile-sidebar">
+      <img
+        src="https://www.imbb.forth.gr/files/repository/20250630132412_ChristosAndronis.jpg"
+        alt="Christos Andronis"
+        class="profile-photo"
+      >
+
+      <div class="contact-block">
+        <h4>Contact</h4>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <a href="tel:2810391167">2810 39 1167</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <a href="mailto:ch.andronis@imbb.forth.gr">ch.andronis@imbb.forth.gr</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">in</div>
+          <a href="https://www.linkedin.com/in/candronis/" target="_blank">LinkedIn Profile</a>
+        </div>
+      </div>
+
+      <a href="team.html" class="btn btn-outline" style="width:100%;justify-content:center;">← Back to Team</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="profile-body anim-fade-up">
+
+      <h2>About</h2>
+      <p>Christos Andronis currently leads the Bioinformatics Unit at IMBB-FORTH. Before joining IMBB, Christos has held similar positions at Deus ex Machina (ekmechanes.com), Biovista and Protein Pathways, Inc. Apart from coordinating projects that involve Bioinformatics omics data analyses, Christos has been leading biomedical data integration and harmonization projects using Ontological frameworks and controlled vocabularies following FAIR principles. In his past positions, Dr. Andronis has also been heavily involved in the systematic drug repurposing and drug adverse event predictions fields. Dr. Andronis has a long-standing interest in transforming experimental and textual data into knowledge useful to biomedical research.</p>
+
+      <h2>Selected Publications</h2>
+      <ul class="pub-list">
+
+        <li>
+          <span class="pub-title">Building an Adverse Outcome Pathway network for COVID-19.</span>
+          Nymark P, Clerbaux LA, Amorim MJ, Andronis C, et al. Front Syst Biol. 2024 Jun 6;4:1384481.
+          <span class="pub-doi"><a href="https://doi.org/10.3389/fsysb.2024.1384481" target="_blank">doi: 10.3389/fsysb.2024.1384481</a> · PMID: 40206642</span>
+        </li>
+
+        <li>
+          <span class="pub-title">Broadening the Nicotiana benthamiana research toolbox through the generation of dicer-like mutants using CRISPR/Cas9 approaches.</span>
+          Bardani E, Katsarou K, Mitta E, Andronis C, et al. Plant Sci. 2025 Jul;356:112490.
+          <span class="pub-doi"><a href="https://doi.org/10.1016/j.plantsci.2025.112490" target="_blank">doi: 10.1016/j.plantsci.2025.112490</a> · PMID: 40174865</span>
+        </li>
+
+        <li>
+          <span class="pub-title">dsRNAEngineer: a web-based tool of comprehensive dsRNA design for pest control.</span>
+          Chen Y, Shi Y, Wang Z, An X, Wei S, Andronis C, Vontas J, Wang JJ, Niu J. Trends Biotechnol. 2025 Apr;43(4):969–983.
+          <span class="pub-doi"><a href="https://doi.org/10.1016/j.tibtech.2025.01.002" target="_blank">doi: 10.1016/j.tibtech.2025.01.002</a> · PMID: 39924355</span>
+        </li>
+
+        <li>
+          <span class="pub-title">Stress-related transcriptomic changes associated with GFP transgene expression and active transgene silencing in plants.</span>
+          Kallemi P, Verret F, Andronis C, Ioannidis N, Glampedakis N, Kotzabasis K, Kalantidis K. Sci Rep. 2024 Jun 10;14(1):13314.
+          <span class="pub-doi"><a href="https://doi.org/10.1038/s41598-024-63527-5" target="_blank">doi: 10.1038/s41598-024-63527-5</a> · PMID: 38858413</span>
+        </li>
+
+        <li>
+          <span class="pub-title">PSTVd infection in Nicotiana benthamiana plants has a minor yet detectable effect on CG methylation.</span>
+          Tselika M, Belmezos N, Kallemi P, Andronis C, et al. Front Plant Sci. 2023 Oct 31;14:1258023.
+          <span class="pub-doi"><a href="https://doi.org/10.3389/fpls.2023.1258023" target="_blank">doi: 10.3389/fpls.2023.1258023</a> · PMID: 38023875</span>
+        </li>
+
+        <li>
+          <span class="pub-title">GABAA receptor-mediated seizure liabilities: a mixed-methods screening approach.</span>
+          Bampali K, Koniuszewski F, Vogel FD, Fabjan J, Andronis C, et al. Cell Biol Toxicol. 2023 Dec;39(6):2793–2819.
+          <span class="pub-doi"><a href="https://doi.org/10.1007/s10565-023-09803-y" target="_blank">doi: 10.1007/s10565-023-09803-y</a> · PMID: 37093397</span>
+        </li>
+
+        <li>
+          <span class="pub-title">Literature mining, ontologies and information visualization for drug repurposing.</span>
+          Andronis C, Sharma A, Virvilis V, Deftereos S, Persidis A. Brief Bioinform. 2011 Jul;12(4):357–68.
+          <span class="pub-doi"><a href="https://doi.org/10.1093/bib/bbr005" target="_blank">doi: 10.1093/bib/bbr005</a> · PMID: 21712342</span>
+        </li>
+
+        <li>
+          <span class="pub-title">Drug repurposing and adverse event prediction using high-throughput literature analysis.</span>
+          Deftereos SN, Andronis C, Friedla EJ, Persidis A, Persidis A. Wiley Interdiscip Rev Syst Biol Med. 2011 May–Jun;3(3):323–34.
+          <span class="pub-doi"><a href="https://doi.org/10.1002/wsbm.147" target="_blank">doi: 10.1002/wsbm.147</a> · PMID: 21416632</span>
+        </li>
+
+        <li>
+          <span class="pub-title">CIRCADIAN CLOCK ASSOCIATED1 and LATE ELONGATED HYPOCOTYL function synergistically in the circadian clock of Arabidopsis.</span>
+          Lu SX, Knowles SM, Andronis C, Ong MS, Tobin EM. Plant Physiol. 2009 Jun;150(2):834–43.
+          <span class="pub-doi"><a href="https://doi.org/10.1104/pp.108.133272" target="_blank">doi: 10.1104/pp.108.133272</a> · PMID: 19218364</span>
+        </li>
+
+        <li>
+          <span class="pub-title">The clock protein CCA1 and the bZIP transcription factor HY5 physically interact to regulate gene expression in Arabidopsis.</span>
+          Andronis C, Barak S, Knowles SM, Sugano S, Tobin EM. Mol Plant. 2008 Jan;1(1):58–67.
+          <span class="pub-doi"><a href="https://doi.org/10.1093/mp/ssm005" target="_blank">doi: 10.1093/mp/ssm005</a> · PMID: 20031914</span>
+        </li>
+
+        <li>
+          <span class="pub-title">Novel biological networks modulated by complement.</span>
+          Mastellos D, Andronis C, Persidis A, Lambris JD. Clin Immunol. 2005 Jun;115(3):225–35.
+          <span class="pub-doi"><a href="https://doi.org/10.1016/j.clim.2005.03.012" target="_blank">doi: 10.1016/j.clim.2005.03.012</a> · PMID: 15893689</span>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete</span>
+  <a href="https://www.imbb.forth.gr/en/home/" target="_blank">← IMBB main site</a>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

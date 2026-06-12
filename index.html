@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){try{
+    var t=localStorage.getItem('bu-theme');
+    var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+    if(t==='dark'||(t===null&&d))document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}}());
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Bioinformatics Unit | IMBB-FORTH</title>
+<style id="shared-styles">
+/* =========================================================
+   Bioinformatics Unit — IMBB-FORTH
+   Shared Stylesheet v2 — FORTH Blue palette, modern refresh
+   ========================================================= */
+
+
+:root {
+  /* FORTH Blue scale */
+  --blue-950:  #051428;
+  --blue-900:  #0F2E5A;
+  --blue-800:  #1B4A8A;
+  --blue-700:  #2260B0;
+  --blue-600:  #2C6FBF;
+  --blue-200:  #C8D8EE;
+  --blue-100:  #E4ECF6;
+  --blue-50:   #F0F5FC;
+  /* FORTH accent colours */
+  --orange:    #D4620A;
+  --orange-lt: #FDF2E9;
+  --teal:      #0D7C7C;
+  --teal-lt:   #E6F4F4;
+  /* Neutrals */
+  --bg:        #F7F8FA;
+  --white:     #FFFFFF;
+  --text:      #0F172A;
+  --text-muted:#5E6880;
+  --border:    #E2E8F0;
+  --card-bg:   #FFFFFF;
+  /* Tokens */
+  --primary:       var(--blue-800);
+  --primary-dark:  var(--blue-900);
+  --primary-light: var(--blue-100);
+  --accent:        var(--orange);
+  --accent-light:  var(--orange-lt);
+  --radius:        14px;
+  --radius-sm:     8px;
+  --radius-lg:     20px;
+  --shadow-sm:     0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:     0 4px 16px rgba(0,0,0,.07);
+  --shadow-lg:     0 12px 36px rgba(0,0,0,.10);
+  --max-w:         1200px;
+  --t:             .18s ease;
+}
+
+/* RESET */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(rgba(27,74,138,.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+a { color: var(--primary); text-decoration: none; transition: color var(--t); }
+a:hover { color: var(--orange); }
+img { max-width:100%; display:block; }
+
+/* =========================================================
+   NAV
+   ========================================================= */
+.site-nav {
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(226,232,240,.8);
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 1px 12px rgba(15,46,90,.05);
+}
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: var(--text);
+}
+.nav-brand-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--blue-900), var(--blue-600));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(27,74,138,.3);
+}
+.nav-brand-icon svg { width:20px; height:20px; }
+.nav-brand-text {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--blue-900);
+  letter-spacing: -.3px;
+  line-height: 1.2;
+}
+.nav-brand-text span {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 12px;
+  display: block;
+  letter-spacing: 0;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-links a {
+  font-size: 13.5px; font-weight: 600;
+  color: var(--text-muted);
+  padding: 7px 13px;
+  border-radius: var(--radius-sm);
+  transition: all var(--t);
+}
+.nav-links a:hover  { color: var(--blue-800); background: var(--blue-50); }
+.nav-links a.active { color: var(--blue-800); background: var(--blue-100); }
+.nav-cta {
+  background: var(--blue-800) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 9px 18px !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 2px 8px rgba(27,74,138,.25) !important;
+}
+.nav-cta:hover  { background: var(--blue-900) !important; box-shadow: 0 4px 16px rgba(27,74,138,.35) !important; }
+.nav-cta.active { background: var(--blue-900) !important; }
+.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:8px; }
+.nav-toggle svg { width:24px; height:24px; stroke: var(--text); }
+
+/* =========================================================
+   PAGE HEADER (sub-pages)
+   ========================================================= */
+.page-header {
+  background: linear-gradient(135deg, var(--blue-950) 0%, var(--blue-900) 40%, var(--blue-700) 100%);
+  color: #fff;
+  padding: 60px 40px 50px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::after {
+  content: '';
+  position: absolute; top: -80px; right: -60px;
+  width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,98,10,.12) 0%, transparent 70%);
+}
+.page-header-inner {
+  max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1;
+}
+.page-header .breadcrumb {
+  font-size: 12px; opacity: .6; margin-bottom: 10px; letter-spacing: .3px;
+}
+.page-header .breadcrumb a { color: #fff; opacity: .8; }
+.page-header .breadcrumb a:hover { opacity: 1; }
+.page-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 40px; line-height: 1.2;
+}
+.page-header p {
+  font-size: 16px; opacity: .8; max-width: 520px;
+  margin-top: 10px; line-height: 1.7;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px; font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: none; cursor: pointer;
+  transition: all var(--t); text-decoration: none;
+}
+.btn-primary  { background: var(--orange); color: #fff; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,98,10,.3); color: #fff; }
+.btn-blue     { background: var(--blue-800); color: #fff; box-shadow: 0 2px 8px rgba(27,74,138,.25); }
+.btn-blue:hover { background: var(--blue-900); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(27,74,138,.35); color: #fff; }
+.btn-secondary {
+  background: rgba(255,255,255,.1); color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+}
+.btn-secondary:hover { background: rgba(255,255,255,.2); color: #fff; }
+.btn-outline  {
+  background: transparent; color: var(--primary);
+  border: 2px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--primary); }
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+.section {
+  padding: 80px 40px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--blue-800); font-weight: 700; margin-bottom: 8px;
+}
+.section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 34px; margin-bottom: 12px;
+}
+.section > .section-desc {
+  color: var(--text-muted); font-size: 16px;
+  max-width: 560px; margin-bottom: 48px; line-height: 1.7;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: transform var(--t), box-shadow var(--t);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card-icon {
+  width: 48px; height: 48px;
+  background: var(--blue-100);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px; font-size: 22px;
+}
+.card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.card p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* =========================================================
+   TABS (resources page)
+   ========================================================= */
+.tab-bar { display:flex; gap:8px; margin-bottom:32px; flex-wrap:wrap; }
+.tab-btn {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 100px; padding: 9px 20px;
+  font-size: 13px; font-weight: 600; color: var(--text-muted);
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all var(--t);
+}
+.tab-btn:hover  { border-color: var(--blue-800); color: var(--blue-800); }
+.tab-btn.active { background: var(--blue-800); color: #fff; border-color: var(--blue-800); }
+.tab-content    { display:none; }
+.tab-content.active-tab { display:grid; }
+
+/* =========================================================
+   RESOURCE LINKS
+   ========================================================= */
+.link-grid { grid-template-columns: repeat(2,1fr); gap: 14px; }
+.link-card {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+  text-decoration: none; color: var(--text);
+  transition: all var(--t);
+}
+.link-card:hover { border-color: var(--blue-800); box-shadow: var(--shadow-sm); transform: translateX(4px); color: var(--blue-800); }
+.link-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.link-icon.enrichment { background: var(--blue-50); }
+.link-icon.browser    { background: var(--blue-100); }
+.link-icon.platform   { background: var(--teal-lt); }
+.link-icon.viz        { background: var(--orange-lt); }
+.link-icon.organism   { background: #FFF1F2; }
+.link-info h4 { font-size:14px; font-weight:700; margin-bottom:2px; }
+.link-info p  { font-size:12px; color: var(--text-muted); }
+.link-arrow   { margin-left:auto; opacity:.3; font-size:16px; transition:opacity var(--t); }
+.link-card:hover .link-arrow { opacity:1; }
+
+/* =========================================================
+   TEAM (team.html)
+   ========================================================= */
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.team-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 32px 24px;
+  text-align: center; transition: all var(--t);
+}
+.team-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.team-avatar {
+  width:90px; height:90px; border-radius:50%;
+  background: var(--blue-100); margin: 0 auto 18px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.team-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.team-card h3   { font-size:17px; font-weight:700; margin-bottom:4px; }
+.team-card .role { font-size:13px; color: var(--blue-800); font-weight:600; margin-bottom:8px; }
+.team-card p    { font-size:13px; color: var(--text-muted); line-height:1.6; }
+.team-card .contact-link {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:13px; font-weight:700; color: var(--blue-800); margin-top:12px;
+}
+.team-card .contact-link:hover { color: var(--orange); }
+
+/* =========================================================
+   WORKFLOW STEPS
+   ========================================================= */
+.workflow-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:48px; }
+.step { position:relative; text-align:center; padding:0 10px; }
+.step-num {
+  width:48px; height:48px; border-radius:50%;
+  background: var(--blue-800); color:#fff;
+  font-family:'DM Serif Display',serif; font-size:20px;
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 16px; position:relative; z-index:2;
+}
+.step h4 { font-size:15px; font-weight:700; margin-bottom:6px; }
+.step p  { font-size:13px; color:var(--text-muted); line-height:1.6; }
+.step:not(:last-child)::after {
+  content:''; position:absolute; top:24px;
+  left:calc(50% + 30px); width:calc(100% - 60px);
+  height:2px; background:var(--border); z-index:1;
+}
+
+/* =========================================================
+   FORM (request.html)
+   ========================================================= */
+.form-card { background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius); padding:40px; max-width:640px; }
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; font-size:13px; font-weight:700; margin-bottom:6px; color:var(--text); }
+.form-group input, .form-group select, .form-group textarea {
+  width:100%; padding:11px 14px;
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:14px;
+  color:var(--text); background:var(--bg);
+  transition:border-color var(--t);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline:none; border-color:var(--blue-800);
+  box-shadow:0 0 0 3px var(--blue-100);
+}
+.form-group textarea { resize:vertical; min-height:100px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* =========================================================
+   CTA STRIP
+   ========================================================= */
+.cta-strip {
+  background: linear-gradient(135deg, var(--blue-950), var(--blue-900) 50%, var(--blue-700));
+  color:#fff; padding:60px; text-align:center;
+  border-radius:var(--radius-lg);
+  max-width:var(--max-w); margin:0 auto 80px;
+}
+.cta-strip h2 { font-family:'DM Serif Display',serif; font-size:32px; margin-bottom:12px; }
+.cta-strip p  { opacity:.8; font-size:16px; margin-bottom:28px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  border-top:1px solid var(--border);
+  padding:28px 40px;
+  max-width:var(--max-w); margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:13px; color:var(--text-muted);
+}
+.site-footer a { color:var(--blue-800); }
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:translateY(0); } }
+.anim-fade-up { animation: fadeUp .6s ease-out both; }
+.anim-delay-1 { animation-delay:.1s; }
+.anim-delay-2 { animation-delay:.2s; }
+.anim-delay-3 { animation-delay:.3s; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:900px) {
+  .site-nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-links.open {
+    display:flex; flex-direction:column; position:absolute;
+    top:68px; left:0; right:0;
+    background:#fff; border-bottom:1px solid var(--border);
+    padding:16px 20px; gap:4px; box-shadow:var(--shadow-md);
+  }
+  .nav-toggle { display:block; }
+  .page-header { padding:40px 20px 35px; }
+  .page-header h1 { font-size:30px; }
+  .section { padding:50px 20px; }
+  .section h2 { font-size:28px; }
+  .team-grid, .services-grid-3 { grid-template-columns:1fr; }
+  .link-grid { grid-template-columns:1fr; }
+  .workflow-steps { grid-template-columns:1fr 1fr; gap:32px; }
+  .step:not(:last-child)::after { display:none; }
+  .cta-strip { padding:40px 24px; }
+  .form-row { grid-template-columns:1fr; }
+  .site-footer { padding:20px; flex-direction:column; gap:8px; text-align:center; }
+}
+@media (max-width:600px) {
+  .workflow-steps { grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   DARK MODE — variable overrides & component inversions
+   Applied when <html data-theme="dark">
+   ========================================================= */
+
+[data-theme="dark"] {
+  --bg:            #0D1117;
+  --white:         #161B22;
+  --text:          #E6EDF3;
+  --text-muted:    #8B949E;
+  --border:        #30363D;
+  --card-bg:       #161B22;
+  --primary:       #60A5FA;
+  --primary-dark:  #93C5FD;
+  --primary-light: #1A2E47;
+  --accent:        #FB923C;
+  --accent-light:  #2D1700;
+  --blue-50:       #0D1B2A;
+  --blue-100:      #1A2E47;
+  --teal-lt:       #0D2020;
+  --orange-lt:     #2D1700;
+}
+
+/* Body */
+[data-theme="dark"] body {
+  background-color: #0D1117;
+  background-image: radial-gradient(rgba(96,165,250,.09) 1px, transparent 1px);
+  color: var(--text);
+}
+
+/* Nav */
+[data-theme="dark"] .site-nav {
+  background: rgba(13,17,23,.90);
+  border-bottom-color: #30363D;
+}
+[data-theme="dark"] .nav-links a { color: #8B949E; }
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active {
+  color: #60A5FA; background: #1A2E47;
+}
+[data-theme="dark"] .nav-cta            { background: #1D4ED8 !important; }
+[data-theme="dark"] .nav-cta:hover      { background: #1E40AF !important; }
+[data-theme="dark"] .nav-brand-text     { color: #93C5FD; }
+[data-theme="dark"] .nav-brand-text span{ color: #8B949E; }
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--t);
+  font-size: 14px; flex-shrink: 0;
+}
+.theme-toggle:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Page header — already dark gradient, stays the same */
+
+/* Cards */
+[data-theme="dark"] .card { background: #161B22; border-color: #30363D; }
+[data-theme="dark"] .card h3 { color: #E6EDF3; }
+[data-theme="dark"] .card p  { color: #8B949E; }
+[data-theme="dark"] .card-icon { background: #1A2E47; }
+
+/* Resource link cards */
+[data-theme="dark"] .link-card {
+  background: #161B22; border-color: #30363D; color: #C9D1D9;
+}
+[data-theme="dark"] .link-card:hover { border-color: #60A5FA; color: #60A5FA; }
+[data-theme="dark"] .link-icon.enrichment { background: #1A2E47; }
+[data-theme="dark"] .link-icon.browser    { background: #1A2E47; }
+[data-theme="dark"] .link-icon.platform   { background: #0D2020; }
+[data-theme="dark"] .link-icon.viz        { background: #2D1700; }
+[data-theme="dark"] .link-icon.organism   { background: #2A0D10; }
+
+/* Tabs */
+[data-theme="dark"] .tab-bar .tab-btn {
+  background: #161B22; border-color: #30363D; color: #8B949E;
+}
+[data-theme="dark"] .tab-bar .tab-btn:hover { border-color: #60A5FA; color: #60A5FA; }
+[data-theme="dark"] .tab-bar .tab-btn.active {
+  background: #2563EB; border-color: #2563EB; color: #fff;
+}
+[data-theme="dark"] .tab-content.active-tab { background: transparent; }
+
+/* Team */
+[data-theme="dark"] .team-card { background: #161B22; border-color: #30363D; }
+[data-theme="dark"] .team-card h3 { color: #E6EDF3; }
+[data-theme="dark"] .team-card p  { color: #8B949E; }
+[data-theme="dark"] .team-card .role { color: #60A5FA; }
+[data-theme="dark"] .team-card .contact-link { color: #60A5FA; }
+[data-theme="dark"] .team-card .contact-link:hover { color: #FB923C; }
+[data-theme="dark"] .team-avatar { background: #1A2E47; }
+
+/* Workflow steps */
+[data-theme="dark"] .step-num { background: #2563EB; }
+[data-theme="dark"] .step h4  { color: #E6EDF3; }
+[data-theme="dark"] .step p   { color: #8B949E; }
+[data-theme="dark"] .step::after { background: #30363D; }
+
+/* Forms (request.html & shared) */
+[data-theme="dark"] .form-card { background: #161B22; border-color: #30363D; }
+[data-theme="dark"] .form-group label { color: #C9D1D9; }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background: #0D1117; border-color: #30363D;
+  color: #E6EDF3;
+}
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus,
+[data-theme="dark"] .form-group textarea:focus {
+  border-color: #60A5FA; box-shadow: 0 0 0 3px #1A2E47;
+}
+
+/* CTA strip */
+[data-theme="dark"] .cta-strip {
+  background: linear-gradient(135deg, #051428 0%, #0F2E5A 50%, #1a3a6b 100%);
+}
+
+/* Footer */
+[data-theme="dark"] .site-footer { border-top-color: #30363D; color: #8B949E; }
+[data-theme="dark"] .site-footer a { color: #60A5FA; }
+
+/* ── HPC page ─── */
+[data-theme="dark"] .hpc-toc { background: #161B22; border-color: #30363D; }
+[data-theme="dark"] .hpc-toc h4 { color: #8B949E; }
+[data-theme="dark"] .hpc-toc a { color: #8B949E; }
+[data-theme="dark"] .hpc-toc a:hover { color: #60A5FA; background: #1A2E47; }
+[data-theme="dark"] .hpc-body h2 { color: #E6EDF3; border-top-color: #30363D; }
+[data-theme="dark"] .hpc-body h3 { color: #C9D1D9; }
+[data-theme="dark"] .hpc-body h4 { color: #60A5FA; }
+[data-theme="dark"] .hpc-body p  { color: #C9D1D9; }
+[data-theme="dark"] .hpc-body li { color: #C9D1D9; }
+[data-theme="dark"] .hpc-body li strong { color: #60A5FA; }
+[data-theme="dark"] code { background: #1A2E47; color: #93C5FD; }
+[data-theme="dark"] .callout.info   { background: #1A2E47; border-left-color: #60A5FA; color: #C9D1D9; }
+[data-theme="dark"] .callout.warn   { background: #2D1700; border-left-color: #FB923C; color: #C9D1D9; }
+[data-theme="dark"] .callout.danger { background: #2A0D10; border-left-color: #F87171; color: #C9D1D9; }
+[data-theme="dark"] .partition-table th { background: #1D4ED8; }
+[data-theme="dark"] .partition-table td { border-bottom-color: #30363D; color: #C9D1D9; }
+[data-theme="dark"] .partition-table tr:nth-child(even) td { background: #1A2233; }
+[data-theme="dark"] .spec-card { background: #161B22; border-color: #30363D; }
+[data-theme="dark"] .spec-card .spec-label { color: #8B949E; }
+[data-theme="dark"] .spec-card .spec-val   { color: #60A5FA; }
+[data-theme="dark"] .spec-card .spec-sub   { color: #8B949E; }
+[data-theme="dark"] .cheat-item .desc { color: #8B949E; }
+
+/* Services page detail cards */
+[data-theme="dark"] .card > div[style*="primary-light"] { background: #1A2E47 !important; }
+[data-theme="dark"] .card > div[style*="accent-light"]  { background: #2D1700 !important; }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── Index-only extras ─────────────────────────────────── */
+:root {
+  --b800: #1B4A8A;
+  --b900: #0F2E5A;
+  --b600: #2C6FBF;
+  --b100: #E4ECF6;
+  --b50:  #F0F5FC;
+  --org:  #D4620A;
+}
+
+/* Institutional bar */
+.inst-bar {
+  background: var(--b900);
+  color: rgba(255,255,255,.65);
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: .1px;
+}
+.inst-bar i { margin-right: 6px; font-size: 11px; opacity: .8; }
+.inst-bar a {
+  color: #93c5fd;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+.inst-bar a:hover { color: #fff; }
+[data-theme="dark"] .inst-bar { background: #051428; }
+
+/* Hero */
+.hero-wrap {
+  background: linear-gradient(160deg, #d8e8f6 0%, #eaf2fb 45%, #d8e8f6 100%);
+  padding: 80px 40px 72px;
+  position: relative; overflow: hidden;
+}
+.hero-inner-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 440px;
+  gap: 56px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--b50); color: var(--b800);
+  border: 1px solid var(--b100);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; margin-bottom: 22px;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--b600);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+.hero-wrap h1 {
+  font-size: 54px; font-weight: 800; line-height: 1.1;
+  letter-spacing: -1.5px; color: #0F172A;
+  margin-bottom: 20px;
+}
+.hero-wrap h1 .grad {
+  background: linear-gradient(135deg, var(--b800) 0%, var(--b600) 60%, #38bdf8 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-wrap > div > p {
+  font-size: 17px; color: #5E6880; line-height: 1.75;
+  max-width: 500px; margin-bottom: 32px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 18px; padding-top: 32px;
+  border-top: 1px solid #E2E8F0;
+  max-width: 480px;
+}
+.hero-stat-num {
+  font-size: 22px; font-weight: 800; color: #0F172A; line-height: 1;
+}
+.hero-stat-lbl {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: #94A3B8; margin-top: 4px;
+}
+
+/* Workflow hero card */
+.whc {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(27,74,138,.12), 0 0 0 1px rgba(27,74,138,.06);
+  padding: 24px;
+}
+.whc-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F1F5F9;
+  margin-bottom: 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.whc-eyebrow {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: #94A3B8; display: block; margin-bottom: 3px;
+}
+.whc-title { font-size: 15px; font-weight: 800; color: #0F172A; }
+.whc-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 15px; border-radius: 14px;
+  border: 1px solid #E8F0F8; background: #F5F8FC;
+  transition: all .15s;
+}
+.whc-step:hover { border-color: #C8D8EE; background: #EDF4FF; }
+.whc-step-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.whc-step-num {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #94A3B8; margin-bottom: 1px;
+}
+.whc-step-name { font-size: 14px; font-weight: 800; color: #0F172A; margin-bottom: 7px; }
+.whc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.whc-tag {
+  font-size: 11px; font-weight: 600; padding: 3px 9px;
+  border-radius: 100px; background: #E4ECF6; color: #1B4A8A;
+}
+.whc-tag-result { background: #FDF2E9; color: #D4620A; }
+.whc-connector {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 2px 0 2px 25px;
+}
+.whc-connector::before {
+  content: '';
+  display: block;
+  width: 3px; height: 18px;
+  background: #1B4A8A;
+  opacity: .65;
+}
+.whc-connector::after {
+  content: '';
+  display: block;
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 11px solid #1B4A8A;
+  opacity: .65;
+}
+.whc-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 16px; border-top: 1px solid #F1F5F9; margin-top: 18px;
+  font-size: 13px;
+}
+.whc-footer span { color: #94A3B8; font-weight: 600; }
+.whc-footer a { color: var(--b800); font-weight: 700; font-size: 13px; }
+.whc-footer a:hover { color: var(--org); }
+
+/* Services */
+.services-section {
+  background: #0F2E5A;
+  border-top: none;
+  border-bottom: none;
+  padding: 80px 40px;
+}
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services-grid-3 {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+}
+.svc-card {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all .18s ease;
+}
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(27,74,138,.10);
+  border-color: var(--b200, #C8D8EE);
+}
+.svc-icon {
+  width: 48px; height: 48px;
+  background: var(--b50); color: var(--b800);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 20px;
+}
+.svc-card h3 { font-size: 17px; font-weight: 800; color: #0F172A; margin-bottom: 10px; }
+.svc-card p  { font-size: 13.5px; color: #5E6880; line-height: 1.7; margin-bottom: 16px; }
+.svc-link {
+  font-size: 13px; font-weight: 700; color: var(--b800);
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.svc-link:hover { color: var(--org); }
+/* ── Dark services section overrides ─── */
+.services-section .section-label { color: #93c5fd !important; display: block; }
+.services-section h2             { color: #fff; }
+.services-section .services-inner > div > p { color: #94A3B8; }
+.services-section .svc-card      { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); }
+.services-section .svc-card:hover{ background: rgba(255,255,255,.12); box-shadow: 0 8px 32px rgba(0,0,0,.3); border-color: rgba(255,255,255,.25); }
+.services-section .svc-card h3   { color: #e2e8f0; }
+.services-section .svc-card p    { color: #94A3B8; }
+.services-section .svc-icon      { background: rgba(44,111,191,.3); color: #93c5fd; }
+.services-section .svc-link      { color: #93c5fd; }
+.services-section .svc-link:hover{ color: #f97316; }
+
+
+/* ── Toolbox ─── */
+.toolbox-section { background: #dde8f5; padding: 80px 40px; }
+.toolbox-inner   { max-width: 1200px; margin: 0 auto; }
+.toolbox-filter-bar {
+  background: #c8daf0;
+  border: 1px solid #E2E8F0;
+  border-radius: 18px;
+  padding: 20px 24px;
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; margin-bottom: 36px;
+}
+.tool-search-wrap {
+  position: relative; flex: 1; min-width: 220px;
+}
+.tool-search-wrap i {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: #94A3B8; font-size: 14px;
+}
+#tool-search {
+  width: 100%;
+  padding: 11px 14px 11px 38px;
+  border: 1px solid #E2E8F0; border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; color: #0F172A;
+  background: #fff;
+  transition: border-color .18s, box-shadow .18s;
+}
+#tool-search:focus {
+  outline: none; border-color: var(--b800);
+  box-shadow: 0 0 0 3px var(--b100);
+}
+.cat-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.cat-btn {
+  padding: 8px 16px; border-radius: 100px;
+  font-size: 12.5px; font-weight: 700;
+  border: 1px solid #E2E8F0;
+  background: #fff; color: #5E6880;
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all .15s;
+}
+.cat-btn:hover  { border-color: var(--b800); color: var(--b800); }
+.cat-btn.active { background: var(--b800); color: #fff; border-color: var(--b800); box-shadow: 0 2px 8px rgba(27,74,138,.22); }
+#tools-container { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.tool-card {
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: all .18s; cursor: default;
+}
+.tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(27,74,138,.09); border-color: var(--b200,#C8D8EE); }
+.tool-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.tool-emoji { font-size: 26px; line-height: 1; }
+.tool-badge {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .8px; padding: 3px 9px; border-radius: 100px;
+  white-space: nowrap;
+}
+.tool-badge.functional { background: var(--b50);  color: var(--b800); }
+.tool-badge.genomics   { background: var(--teal-lt, #E6F4F4); color: #0D7C7C; }
+.tool-badge.platform   { background: #F0FDF4; color: #166534; }
+.tool-badge.viz        { background: var(--orange-lt, #FDF2E9); color: var(--org); }
+.tool-badge.organism   { background: #FFF1F2; color: #be123c; }
+.tool-card h4 { font-size: 15px; font-weight: 800; color: #0F172A; }
+.tool-card p  { font-size: 12.5px; color: #5E6880; line-height: 1.6; flex: 1; }
+.tool-card a  {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12.5px; font-weight: 700; color: var(--b800);
+  margin-top: 4px;
+}
+.tool-card a:hover { color: var(--org); }
+#no-tools { display: none; text-align: center; padding: 48px; color: #94A3B8; grid-column: 1/-1; }
+
+/* ── Wizard ─── */
+
+.tmpl-btn {
+  padding: 9px 10px; border-radius: 10px;
+  font-size: 11.5px; font-weight: 700;
+  text-align: left; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  border: 1px solid; transition: all .15s;
+}
+.tmpl-btn.inflam { border-color: #fed7aa; background: #fff7ed; color: #c2410c; }
+.tmpl-btn.inflam:hover { background: #ffedd5; }
+.tmpl-btn.cycle  { border-color: #a5f3fc; background: #ecfeff; color: #0e7490; }
+.tmpl-btn.cycle:hover  { background: #cffafe; }
+.btn-run {
+  width: 100%; padding: 13px;
+  background: #0F172A; color: #fff;
+  border: none; border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .15s;
+}
+.btn-run:hover { background: var(--b900); }
+.fdr-badge {
+  background: #DCFCE7; color: #166534;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 10px; border-radius: 100px;
+}
+#enrichment-chart-container { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.enrich-empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: #CBD5E1; text-align: center; gap: 12px;
+}
+.enrich-empty i { font-size: 36px; }
+.enrich-empty p { font-size: 13px; color: #94A3B8; max-width: 280px; }
+.enrich-bar-wrap { display: flex; flex-direction: column; gap: 4px; }
+.enrich-bar-top {
+  display: flex; justify-content: space-between;
+  font-size: 12.5px; font-weight: 700;
+}
+.enrich-bar-top .pw   { color: #0F172A; }
+.enrich-bar-top .pval { color: #64748B; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.enrich-track {
+  width: 100%; height: 14px;
+  background: #F1F5F9; border-radius: 100px;
+  overflow: hidden;
+}
+.enrich-fill {
+  height: 100%; border-radius: 100px;
+  background: linear-gradient(90deg, var(--b800), var(--b600));
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+.enrich-genes { font-size: 10.5px; color: #94A3B8; }
+.btn-enrichr {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--b50); color: var(--b800);
+  border: 1px solid var(--b100);
+  padding: 7px 14px; border-radius: 10px;
+  font-size: 12px; font-weight: 700;
+  transition: all .15s; text-decoration: none;
+}
+.btn-enrichr:hover { background: var(--b100); color: var(--b900); }
+
+/* ── Contact form ─── */
+.contact-section { background: #dde8f5; border-top: 1px solid #E2E8F0; padding: 80px 40px; }
+.contact-inner   {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 480px; gap: 64px; align-items: start;
+}
+.contact-left h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px; margin-bottom: 14px;
+}
+.contact-left p { font-size: 15px; color: #5E6880; line-height: 1.75; margin-bottom: 32px; max-width: 420px; }
+.contact-info-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-bottom: 20px;
+}
+.ci-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--b100); color: var(--b800);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.ci-label  { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94A3B8; }
+.ci-value  { font-size: 14px; font-weight: 600; color: #0F172A; margin-top: 2px; }
+.ci-value a { color: var(--b800); }
+.ci-value a:hover { color: var(--org); }
+.contact-form-card {
+  background: #fff; border: 1px solid #E2E8F0;
+  border-radius: 20px; padding: 36px;
+}
+.contact-form-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+.contact-form-card .sub { font-size: 13px; color: #94A3B8; margin-bottom: 24px; }
+.form-field { margin-bottom: 16px; }
+.form-field label { display: block; font-size: 12.5px; font-weight: 700; color: #374151; margin-bottom: 5px; }
+.form-field input, .form-field select, .form-field textarea {
+  width: 100%; padding: 10px 13px;
+  border: 1px solid #E2E8F0; border-radius: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13.5px;
+  color: #0F172A; background: #fff;
+  transition: border-color .18s, box-shadow .18s;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+  outline: none; border-color: var(--b800);
+  box-shadow: 0 0 0 3px var(--b100);
+}
+.form-field textarea { resize: vertical; min-height: 90px; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-submit {
+  width: 100%; padding: 13px;
+  background: var(--b800); color: #fff;
+  border: none; border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .15s, box-shadow .15s;
+}
+.btn-submit:hover { background: var(--b900); box-shadow: 0 4px 16px rgba(27,74,138,.3); }
+#form-success {
+  display: none; text-align: center; padding: 32px 16px;
+}
+#form-success i { font-size: 40px; color: #22c55e; margin-bottom: 12px; display: block; }
+#form-success h4 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+#form-success p { font-size: 14px; color: #5E6880; }
+
+/* Footer */
+.site-footer-new {
+  background: var(--b950, #051428);
+  color: rgba(255,255,255,.5);
+  padding: 28px 40px;
+}
+.site-footer-new-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; flex-wrap: wrap; gap: 8px;
+}
+.site-footer-new a { color: #93c5fd; }
+.site-footer-new a:hover { color: #fff; }
+.footer-links { display: flex; gap: 20px; }
+
+/* Responsive extras */
+@media (max-width: 1024px) {
+  .hero-inner-grid { grid-template-columns: 1fr; }
+  .whc { max-width: 520px; }
+    .contact-inner   { grid-template-columns: 1fr; }
+  #tools-container { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 700px) {
+  .hero-wrap h1    { font-size: 34px; }
+  .services-grid-3 { grid-template-columns: 1fr; }
+  #tools-container { grid-template-columns: 1fr; }
+  .form-row-2      { grid-template-columns: 1fr; }
+  .hero-stats      { grid-template-columns: repeat(2,1fr); max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- INSTITUTIONAL BAR -->
+<div class="inst-bar">
+  <i class="fa-solid fa-building-columns"></i>
+  Part of the IMBB-FORTH Core Facilities ·
+  <a href="https://www.imbb.forth.gr/en/facilities/Bioinformatics-Unit.15/" target="_blank" rel="noopener">Official facility page ↗</a>
+</div>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+            <img src="imbb-logo.jpeg" alt="IMBB-FORTH" style="height:44px;width:auto;background:#fff;padding:3px 8px;border-radius:7px;display:block;">
+      <div class="nav-brand-text">Bioinformatics Unit <span>Core Facility · IMBB-FORTH</span></div>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#toolbox">Toolbox</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html">Team</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+      <a href="#contact" class="nav-cta">Submit Request</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-wrap">
+  <div class="hero-inner-grid">
+    <div class="anim-fade-up">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Serving IMBB &amp; University of Crete labs
+      </div>
+      <h1>Data-driven biology,<br><span class="grad">made accessible.</span></h1>
+      <p>We provide bespoke analysis pipelines, HPC computing, expert consulting, and training resources to accelerate biological research in IMBB-FORTH and beyond.</p>
+      <div class="hero-btns">
+        <a href="#toolbox" class="btn btn-blue"><i class="fa-solid fa-screwdriver-wrench"></i> Explore Toolbox</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">NGS</div>
+          <div class="hero-stat-lbl">Data Analysis services</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">HPC</div>
+          <div class="hero-stat-lbl">Cluster Access</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">Curated</div>
+          <div class="hero-stat-lbl">Resources &amp; custom tools</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">Training</div>
+          <div class="hero-stat-lbl">Workshops &amp; materials</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workflow diagram card -->
+    <div class="whc anim-fade-up anim-delay-2">
+
+      <div class="whc-header">
+        <div>
+          <span class="whc-eyebrow">How it works</span>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <div class="whc-title">From Data to Discovery</div>
+            <span style="background:var(--b100);color:var(--b800);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 9px;border-radius:100px;border:1px solid var(--b200,#C8D8EE);">RNA-seq</span>
+          </div>
+        </div>
+        <div style="width:36px;height:36px;border-radius:10px;background:var(--b50);display:flex;align-items:center;justify-content:center;color:var(--b800);font-size:15px;">
+          <i class="fa-solid fa-route"></i>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="whc-step">
+        <div class="whc-step-icon" style="background:#E4ECF6;color:#1B4A8A;">
+          <i class="fa-solid fa-database"></i>
+        </div>
+        <div>
+          <div class="whc-step-num">Step 01</div>
+          <div class="whc-step-name">Your Data</div>
+          <div class="whc-tags">
+            <span class="whc-tag">Raw sequencing reads</span>
+            <span class="whc-tag">Sample metadata</span>
+            <span class="whc-tag">Reference genome</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="whc-connector"></div>
+
+      <!-- Step 2 -->
+      <div class="whc-step">
+        <div class="whc-step-icon" style="background:#1B4A8A;color:#fff;">
+          <i class="fa-solid fa-gears"></i>
+        </div>
+        <div>
+          <div class="whc-step-num">Step 02</div>
+          <div class="whc-step-name">Analysis Pipeline</div>
+          <div class="whc-tags">
+            <span class="whc-tag">Quality control</span>
+            <span class="whc-tag">Alignment</span>
+            <span class="whc-tag">Quantification</span>
+            <span class="whc-tag">Statistical testing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="whc-connector"></div>
+
+      <!-- Step 3 -->
+      <div class="whc-step">
+        <div class="whc-step-icon" style="background:#D4620A;color:#fff;">
+          <i class="fa-solid fa-chart-bar"></i>
+        </div>
+        <div>
+          <div class="whc-step-num">Step 03</div>
+          <div class="whc-step-name">Results &amp; Report</div>
+          <div class="whc-tags">
+            <span class="whc-tag whc-tag-result">Gene lists &amp; figures</span>
+            <span class="whc-tag whc-tag-result">Pathway analysis</span>
+            <span class="whc-tag whc-tag-result">Methods report</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="whc-footer" style="flex-direction:column;align-items:flex-start;gap:10px;">
+        <a href="https://github.com/chandron/IMBB-rnaseq-workshop-1day" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--b800);text-decoration:none;background:var(--b50);padding:6px 12px;border-radius:8px;border:1px solid var(--b100);">
+          <i class="fa-brands fa-github" style="font-size:13px;"></i> RNA-seq workshop materials (GitHub)
+        </a>
+        <div style="display:flex;justify-content:space-between;width:100%;align-items:center;">
+          <span>Ready to start?</span>
+          <a href="#contact">Submit a request <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+      <div class="section-label" style="justify-content:center;display:block;">Core Facility Services</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:34px;margin-bottom:12px;">How We Support Your Research</h2>
+      <p style="font-size:16px;color:#5E6880;line-height:1.7;">From experimental design to publication-ready figures — we assist biology labs at every stage.</p>
+    </div>
+    <div class="services-grid-3">
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fa-solid fa-dna"></i></div>
+        <h3>RNA-seq &amp; Transcriptomics</h3>
+        <p>Bulk and single-cell RNA-seq analysis. Differential expression, GO/KEGG enrichment, pathway visualization, and publication figures using DESeq2, edgeR, and clusterProfiler.</p>
+        <a href="https://www.imbb.forth.gr/en/facilities/Bioinformatics-Unit.15/&tabid=Services.154" target="_blank" rel="noopener" class="svc-link">Explore service <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fa-solid fa-microscope"></i></div>
+        <h3>Genomics &amp; Variant Calling</h3>
+        <p>WGS/WES pipelines, SNP/indel detection with GATK and FreeBayes, variant annotation with VEP/SnpEff, structural variants, and population genetics.</p>
+        <a href="https://www.imbb.forth.gr/en/facilities/Bioinformatics-Unit.15/&tabid=Services.154" target="_blank" rel="noopener" class="svc-link">Explore service <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <h3>Training &amp; Workshops</h3>
+        <p>Hands-on workshops for wet-lab biologists: R/Bioconductor, Linux command line, reproducible analysis, and RNA-seq from scratch. Open to IMBB and University of Crete.</p>
+        <a href="https://github.com/chandron/IMBB-rnaseq-workshop-1day" target="_blank" rel="noopener" class="svc-link">View workshop materials <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- OUR TOOLS TEASER -->
+<section style="background:#fff;padding:80px 40px;" id="our-tools">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="text-align:center;max-width:640px;margin:0 auto 48px;">
+      <div class="section-label" style="display:block;">Built at IMBB</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:34px;margin-bottom:12px;">Our Tools &amp; Resources</h2>
+      <p style="font-size:15px;color:#5E6880;line-height:1.7;">Web apps and databases developed by the unit and collaborating groups at IMBB-FORTH.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:36px;">
+
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:28px 24px;transition:all .18s;" onmouseover="this.style.boxShadow='0 12px 36px rgba(0,0,0,.1)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#E4ECF6;color:#1B4A8A;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="fa-solid fa-dna"></i></div>
+          <span style="background:#DCFCE7;color:#15803D;border:1px solid #BBF7D0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:100px;">Live</span>
+        </div>
+        <div style="font-size:16px;font-weight:800;color:#0F172A;margin-bottom:8px;">dsRNA Analyzer</div>
+        <p style="font-size:13px;color:#5E6880;line-height:1.65;margin-bottom:16px;">Designs dsRNA sequences for RNAi applications, screening candidates against non-target organism databases.</p>
+        <a href="http://dsrna-analyzer.org:3000/dsrna-analyzer" target="_blank" rel="noopener" style="font-size:13px;font-weight:700;color:#1B4A8A;text-decoration:none;">Launch app <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;"></i></a>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:28px 24px;transition:all .18s;" onmouseover="this.style.boxShadow='0 12px 36px rgba(0,0,0,.1)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#E6F4F4;color:#0D7C7C;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="fa-solid fa-crosshairs"></i></div>
+          <span style="background:#E4ECF6;color:#1B4A8A;border:1px solid #C8D8EE;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:100px;">Coming Soon</span>
+        </div>
+        <div style="font-size:16px;font-weight:800;color:#0F172A;margin-bottom:8px;">dsRNA Specificity App</div>
+        <p style="font-size:13px;color:#5E6880;line-height:1.65;margin-bottom:16px;">Screens dsRNA candidates for off-target hits within the target organism's genome.</p>
+        <a href="tools.html" style="font-size:13px;font-weight:700;color:#1B4A8A;text-decoration:none;">Learn more <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i></a>
+      </div>
+
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:28px 24px;transition:all .18s;" onmouseover="this.style.boxShadow='0 12px 36px rgba(0,0,0,.1)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:#FDF2E9;color:#D4620A;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="fa-solid fa-bug"></i></div>
+          <span style="background:#DCFCE7;color:#15803D;border:1px solid #BBF7D0;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:100px;">Live</span>
+        </div>
+        <div style="font-size:16px;font-weight:800;color:#0F172A;margin-bottom:8px;">Arthropod P450 Docuwiki</div>
+        <p style="font-size:13px;color:#5E6880;line-height:1.65;margin-bottom:16px;">Nomenclature and sequence resource for arthropod cytochrome P450 enzymes.</p>
+        <a href="https://arthropodp450.eu/doku.php?id=introduction_nomenclature" target="_blank" rel="noopener" style="font-size:13px;font-weight:700;color:#1B4A8A;text-decoration:none;">Open wiki <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;"></i></a>
+      </div>
+
+    </div>
+    <div style="text-align:center;">
+      <a href="tools.html" class="btn btn-outline">View all tools &amp; resources →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLBOX -->
+<section class="toolbox-section" id="toolbox">
+  <div class="toolbox-inner">
+    <div style="text-align:center;max-width:640px;margin:0 auto 40px;">
+      <div class="section-label" style="display:block;">Self-Service Resources</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:34px;margin-bottom:12px;">The Biologist's Toolbox</h2>
+      <p style="font-size:15px;color:#5E6880;line-height:1.7;">30+ curated web tools for functional enrichment, genome browsing, visualization, and analysis — most require no coding.</p>
+    </div>
+    <div class="toolbox-filter-bar">
+      <div class="tool-search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="tool-search" placeholder="Search tools (e.g. enrichment, GSEA, genome browser…)">
+      </div>
+      <div class="cat-btns">
+        <button class="cat-btn active" onclick="filterTools('functional',this)">Functional Enrichment</button>
+        <button class="cat-btn" onclick="filterTools('genomics',this)">Genomes &amp; Databases</button>
+        <button class="cat-btn" onclick="filterTools('viz',this)">Visualization</button>
+        <button class="cat-btn" onclick="filterTools('networks',this)">Networks &amp; Pathways</button>
+        <button class="cat-btn" onclick="filterTools('organism',this)">Organism DBs</button>
+      </div>
+    </div>
+    <div id="tools-container"></div>
+    <div id="no-tools"><i class="fa-solid fa-circle-exclamation" style="font-size:28px;display:block;margin-bottom:8px;"></i>No tools match your search.</div>
+  </div>
+</section>
+
+
+
+
+<!-- HPC TEASER -->
+<section style="background:linear-gradient(135deg,#0F2E5A 0%,#1B4A8A 60%,#2C6FBF 100%);padding:72px 40px;position:relative;overflow:hidden;" id="hpc">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px;"></div>
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div>
+      <div style="font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#93c5fd;font-weight:700;margin-bottom:10px;">Compute Infrastructure</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:36px;color:#fff;margin-bottom:14px;line-height:1.2;">HIBU HPC Cluster</h2>
+      <p style="font-size:15px;color:#94A3B8;line-height:1.75;margin-bottom:28px;max-width:440px;">IMBB's in-house Slurm-managed cluster. Four compute nodes, 42 TB of scratch storage, and Singularity containers — available to all IMBB and University of Crete users.</p>
+      <a href="hpc.html" style="display:inline-flex;align-items:center;gap:8px;background:#D4620A;color:#fff;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s;" onmouseover="this.style.background='#b5520a'" onmouseout="this.style.background='#D4620A'">
+        <i class="fa-solid fa-book-open"></i> Read the User Guide
+      </a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px 20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:#fff;line-height:1;">4</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#64748B;margin-top:6px;">Compute Nodes</div>
+        <div style="font-size:12px;color:#94A3B8;margin-top:4px;">node1–3 (256 GB), node4</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px 20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:#fff;line-height:1;">42 TB</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#64748B;margin-top:6px;">Scratch Storage</div>
+        <div style="font-size:12px;color:#94A3B8;margin-top:4px;">/data/{USER} — fast NAS</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px 20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:#fff;line-height:1;">Slurm</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#64748B;margin-top:6px;">Scheduler</div>
+        <div style="font-size:12px;color:#94A3B8;margin-top:4px;">long / short / smallhm partitions</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px 20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:#fff;line-height:1;">SSH</div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#64748B;margin-top:6px;">2FA Access</div>
+        <div style="font-size:12px;color:#94A3B8;margin-top:4px;">hibu.imbb.gr · VPN + Authenticator</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-label">Get in Touch</div>
+      <h2>Need help with your data?</h2>
+      <p>Whether you need a full analysis pipeline, a one-off consultation, or just advice on which tool to use — we're here for labs at IMBB-FORTH and the University of Crete.</p>
+      <div class="contact-info-item">
+        <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-value"><a href="mailto:imbb_bioinfo@imbb.forth.gr">imbb_bioinfo@imbb.forth.gr</a></div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div>
+          <div class="ci-label">Address</div>
+          <div class="ci-value">IMBB-FORTH, Nikolaou Plastira 100<br>GR-70013 Heraklion, Crete</div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon"><i class="fa-solid fa-clock"></i></div>
+        <div>
+          <div class="ci-label">Office Hours</div>
+          <div class="ci-value">Wednesdays, 14:00–16:00</div>
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <a href="team.html" class="btn btn-blue"><i class="fa-solid fa-users"></i> Meet the Team</a>
+      </div>
+    </div>
+    <div class="contact-form-card">
+      <h3>Submit a Project Request</h3>
+      <div class="sub">We typically respond within 2–3 working days.</div>
+      <div id="request-form">
+        <div class="form-row-2">
+          <div class="form-field">
+            <label>Full Name *</label>
+            <input type="text" placeholder="e.g. Maria Papadopoulou">
+          </div>
+          <div class="form-field">
+            <label>Email *</label>
+            <input type="email" placeholder="your@imbb.forth.gr">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Lab / PI Name *</label>
+          <input type="text" placeholder="e.g. [PI Name] Lab, IMBB">
+        </div>
+        <div class="form-field">
+          <label>Analysis Type *</label>
+          <select>
+            <option value="">Select…</option>
+            <option>RNA-seq (bulk)</option>
+            <option>RNA-seq (single-cell)</option>
+            <option>WGS/WES — Variant Calling</option>
+            <option>Functional Enrichment</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Project Description *</label>
+          <textarea placeholder="Briefly describe your experiment and what you need…"></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit(event)">
+          <i class="fa-solid fa-paper-plane"></i> Submit Request
+        </button>
+      </div>
+      <div id="form-success">
+        <i class="fa-solid fa-circle-check"></i>
+        <h4>Request received!</h4>
+        <p>We'll be in touch within 2–3 working days.</p>
+        <button onclick="resetForm()" style="margin-top:16px;background:none;border:1px solid #E2E8F0;border-radius:10px;padding:8px 20px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;">Submit Another →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer-new">
+  <div class="site-footer-new-inner">
+    <span>© 2026 Bioinformatics Unit · IMBB-FORTH, Heraklion, Crete, Greece</span>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="tools.html">Our Tools</a>
+      <a href="hpc.html"><i class="fa-solid fa-server" style="font-size:11px;margin-right:3px;"></i>HPC Docs</a>
+      <a href="team.html">Team</a>
+      <a href="#contact">Get in touch</a>
+      <a href="https://www.imbb.forth.gr/en/facilities/Bioinformatics-Unit.15/" target="_blank">IMBB Facility Page ↗</a>
+      <a href="https://www.imbb.forth.gr/en/home/" target="_blank">IMBB ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Dark mode ───────────────────────────────────────────── */
+function toggleDarkMode() {
+  var html = document.documentElement;
+  var icon = document.getElementById('theme-icon');
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    html.removeAttribute('data-theme');
+    if (icon) icon.className = 'fa-solid fa-moon';
+    try { localStorage.setItem('bu-theme','light'); } catch(e) {}
+  } else {
+    html.setAttribute('data-theme','dark');
+    if (icon) icon.className = 'fa-solid fa-sun';
+    try { localStorage.setItem('bu-theme','dark'); } catch(e) {}
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var icon = document.getElementById('theme-icon');
+  if (icon && document.documentElement.getAttribute('data-theme') === 'dark') {
+    icon.className = 'fa-solid fa-sun';
+  }
+  var toggle = document.querySelector('.nav-toggle');
+  var links  = document.querySelector('.nav-links');
+  if (toggle && links) toggle.addEventListener('click', function() { links.classList.toggle('open'); });
+});
+
+/* ── TOOLS DATA ────────────────────────────────────────── */
+const TOOLS = [
+  { name:"g:Profiler",       cat:"functional", emoji:"🎯", desc:"GO, KEGG, Reactome and WikiPathways enrichment from a gene list",          url:"https://biit.cs.ut.ee/gprofiler/" },
+  { name:"Enrichr",          cat:"functional", emoji:"📚", desc:"200+ gene-set libraries with instant enrichment analysis",                  url:"https://maayanlab.cloud/Enrichr/" },
+  { name:"DAVID",            cat:"functional", emoji:"🏛️", desc:"Classic functional annotation, clustering and gene ID conversion",          url:"https://david.ncifcrf.gov/" },
+  { name:"GSEA",             cat:"functional", emoji:"📈", desc:"Ranked gene set enrichment analysis — Broad Institute",                     url:"https://www.gsea-msigdb.org/gsea/" },
+  { name:"PANTHER",          cat:"functional", emoji:"🐾", desc:"Gene function classification and overrepresentation test",                  url:"https://pantherdb.org/" },
+  { name:"WebGestalt",       cat:"functional", emoji:"🌐", desc:"ORA, GSEA and network topology analysis in one interface",                  url:"https://www.webgestalt.org/" },
+  { name:"Metascape",        cat:"functional", emoji:"🔭", desc:"Multi-gene list enrichment with network analysis and auto-annotation",      url:"https://metascape.org" },
+  { name:"Gene Ontology",    cat:"functional", emoji:"🏷️", desc:"Official GO resource — annotations, browser and enrichment analysis",      url:"https://geneontology.org/" },
+  { name:"Ensembl",          cat:"genomics",   emoji:"🧭", desc:"Genome browser, gene annotations, comparative genomics and BioMart",       url:"https://www.ensembl.org/" },
+  { name:"UCSC Genome Browser",cat:"genomics", emoji:"🗺️", desc:"Custom tracks, BLAT search, table browser and track hubs",                url:"https://genome.ucsc.edu/" },
+  { name:"GEO (NCBI)",       cat:"genomics",   emoji:"💾", desc:"Public expression datasets and GEO2R for quick comparisons",               url:"https://www.ncbi.nlm.nih.gov/geo/" },
+  { name:"ENA",              cat:"genomics",   emoji:"📂", desc:"European Nucleotide Archive — raw sequencing data repository",             url:"https://www.ebi.ac.uk/ena/browser/" },
+  { name:"SRA (NCBI)",       cat:"genomics",   emoji:"🗄️", desc:"Sequence Read Archive — download raw reads from published studies",       url:"https://www.ncbi.nlm.nih.gov/sra" },
+  { name:"STRING",           cat:"networks",        emoji:"🕸️", desc:"Protein–protein interaction networks and functional enrichment",          url:"https://string-db.org/" },
+  { name:"Reactome",         cat:"networks",        emoji:"🗂️", desc:"Pathway database with analysis, visualization and overlay tools",         url:"https://reactome.org/" },
+  { name:"Cytoscape",        cat:"networks",        emoji:"🔄", desc:"Desktop network visualization and analysis (free download)",               url:"https://www.cytoscape.org/" },
+  { name:"Morpheus",         cat:"viz", sub:"heatmap",        emoji:"🔥", desc:"Interactive heatmaps in the browser — cluster, filter and annotate",       url:"https://software.broadinstitute.org/morpheus/" },
+  { name:"Bioinformatics.com.cn", cat:"viz", sub:"volcano",  emoji:"🎨", desc:"Volcano plots, heatmaps, Venn diagrams, and more — no code needed",            url:"https://www.bioinformatics.com.cn/en" },
+  { name:"KEGG Pathway",     cat:"networks",        emoji:"🗺️", desc:"Pathway maps for metabolism, signaling, drug targets and disease",        url:"https://www.kegg.jp/kegg/pathway.html" },
+  { name:"VolcaNoseR",              cat:"viz", sub:"volcano",      emoji:"🌋", desc:"Dedicated volcano plot tool — paste your DEG table and generate publication-ready figures",          url:"https://huygens.science.uva.nl/VolcaNoseR/" },
+  { name:"Venn Diagram (PSB Ghent)",cat:"viz", sub:"venn",     emoji:"⭕", desc:"Up to 4 gene set Venn diagrams with publication-ready export",                                      url:"https://bioinformatics.psb.ugent.be/webtools/Venn/" },
+  { name:"InteractiVenn",           cat:"viz", sub:"venn",      emoji:"🔵", desc:"Interactive Venn diagrams supporting up to 6 gene sets",                                             url:"http://www.interactivenn.net/" },
+  { name:"eulerr",                  cat:"viz", sub:"venn",      emoji:"🫧", desc:"Proportional Euler diagrams — visually cleaner than standard Venn",                                  url:"https://eunoia.bz/app/" },
+  { name:"Heatmapper2",             cat:"viz", sub:"heatmap",      emoji:"🟥", desc:"Purpose-built heatmap tool for biologists, multiple display types",                                  url:"https://heatmapper2.ca/" },
+  { name:"ClustVis",                cat:"viz", sub:"heatmap",      emoji:"📊", desc:"Heatmap and PCA in one tool, widely used in RNA-seq papers",                                        url:"https://biit.cs.ut.ee/clustvis/" },
+  { name:"iTOL",                    cat:"viz", sub:"phylo",      emoji:"🌳", desc:"Interactive Tree of Life — the standard for annotating and publishing phylogenetic trees",            url:"https://itol.embl.de/" },
+  { name:"Phylo.io",                cat:"viz", sub:"phylo",      emoji:"🌿", desc:"Simpler phylogenetic tree viewer, good for quick visualization and comparison",                       url:"https://phylo.io/" },
+  { name:"BioRender",        cat:"viz", sub:"illustration",        emoji:"✏️", desc:"Professional scientific illustrations and graphical abstracts",            url:"https://biorender.com/" },
+  { name:"FlyBase",          cat:"organism",   emoji:"🪰", desc:"Drosophila melanogaster — genes, alleles, phenotypes and expression",     url:"https://flybase.org/" },
+  { name:"WormBase",         cat:"organism",   emoji:"🪱", desc:"C. elegans and related nematodes — genome, expression and phenotypes",     url:"https://wormbase.org/" },
+  { name:"TAIR",             cat:"organism",   emoji:"🌱", desc:"Arabidopsis thaliana — genome annotations, mutants and seed stocks",      url:"https://www.arabidopsis.org/" },
+  { name:"MGI",              cat:"organism",   emoji:"🐭", desc:"Mouse Genome Informatics — expression, phenotypes and disease models",     url:"https://www.informatics.jax.org/" },
+  { name:"VectorBase",       cat:"organism",   emoji:"🦟", desc:"Mosquitoes, ticks and vectors — genomes, expression and population data", url:"https://vectorbase.org/" },
+  { name:"ZFIN",             cat:"organism",   emoji:"🐟", desc:"Zebrafish — genetic, genomic and phenotype data from ZFIN",               url:"https://zfin.org/" },
+];
+
+const BADGE = { functional:"functional", genomics:"genomics", viz:"viz", networks:"networks", organism:"organism" };
+const BADGE_LABEL = { functional:"Enrichment", genomics:"Genomes", viz:"Visualization", networks:"Networks", organism:"Organism DB" };
+
+const VIZ_SUB_LABELS = {
+  volcano:      'Volcano plots',
+  venn:         'Venn & Euler diagrams',
+  heatmap:      'Heatmaps',
+  phylo:        'Phylogenetic trees',
+  illustration: 'Illustrations'
+};
+const VIZ_SUB_ORDER = ['volcano','venn','heatmap','phylo','illustration'];
+
+function toolCardHTML(t) {
+  return `<div class="tool-card" data-cat="${t.cat}">
+        <div class="tool-card-top">
+          <span style="font-size:26px;">${t.emoji}</span>
+          <span class="tool-badge ${BADGE[t.cat]}">${BADGE_LABEL[t.cat]}</span>
+        </div>
+        <h4>${t.name}</h4>
+        <p>${t.desc}</p>
+        <a href="${t.url}" target="_blank" rel="noopener">
+          Open tool <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;"></i>
+        </a>
+      </div>`;
+}
+
+function renderTools(list) {
+  const c = document.getElementById('tools-container');
+  const nm = document.getElementById('no-tools');
+  c.innerHTML = '';
+  if (!list.length) { nm.style.display='block'; return; }
+  nm.style.display = 'none';
+  if (activeCat === 'viz') {
+    const groups = {};
+    VIZ_SUB_ORDER.forEach(k => groups[k] = []);
+    list.forEach(t => { if (groups[t.sub]) groups[t.sub].push(t); });
+    VIZ_SUB_ORDER.forEach(key => {
+      if (!groups[key].length) return;
+      c.insertAdjacentHTML('beforeend',
+        `<div style="grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:14px 0 6px;margin-top:4px;border-top:1px solid #E2E8F0;">
+          <i class="fa-solid fa-grip-lines" style="font-size:11px;color:#94A3B8;"></i>
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:#1B4A8A;">${VIZ_SUB_LABELS[key]}</span>
+          <div style="flex:1;height:1px;background:#E2E8F0;"></div>
+        </div>`
+      );
+      groups[key].forEach(t => c.insertAdjacentHTML('beforeend', toolCardHTML(t)));
+    });
+  } else {
+    list.forEach(t => c.insertAdjacentHTML('beforeend', toolCardHTML(t)));
+  }
+}
+let activeCat = 'functional';
+renderTools(TOOLS.filter(function(t){ return t.cat === 'functional'; }));
+
+function filterTools(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  applyFilters();
+}
+document.getElementById('tool-search').addEventListener('input', applyFilters);
+function applyFilters() {
+  const q = document.getElementById('tool-search').value.toLowerCase();
+  const filtered = TOOLS.filter(t =>
+    (activeCat === 'all' || t.cat === activeCat) &&
+    (t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q))
+  );
+  renderTools(filtered);
+}
+
+/* ── CONTACT FORM ───────────────────────────────────────── */
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('request-form').style.display = 'none';
+  document.getElementById('form-success').style.display  = 'block';
+}
+function resetForm() {
+  document.getElementById('request-form').style.display = 'block';
+  document.getElementById('form-success').style.display  = 'none';
+}
+</script>
+
+<style id="dark-mode-index">
+/* Index-page dark mode overrides */
+[data-theme="dark"] body {
+  background-image: radial-gradient(rgba(96,165,250,.09) 1px, transparent 1px);
+}
+/* Hero */
+[data-theme="dark"] .hero-wrap {
+  background: linear-gradient(160deg, #0D1B2A 0%, #0D1117 45%, #0D1B2A 100%) !important;
+}
+[data-theme="dark"] .hero-wrap h1     { color: #E6EDF3; }
+[data-theme="dark"] .hero-wrap > div > p { color: #8B949E; }
+[data-theme="dark"] .hero-badge {
+  background: #1A2E47; border-color: #30363D; color: #60A5FA;
+}
+[data-theme="dark"] .hero-badge .dot  { background: #60A5FA; }
+[data-theme="dark"] .hero-stat-num    { color: #E6EDF3; }
+[data-theme="dark"] .hero-stat-lbl    { color: #64748B; }
+[data-theme="dark"] .hero-stats       { border-top-color: #30363D; }
+/* Workflow hero card */
+[data-theme="dark"] .whc {
+  background: #161B22 !important;
+  border-color: #30363D !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(96,165,250,.08) !important;
+}
+[data-theme="dark"] .whc-header { border-bottom-color: #30363D !important; }
+[data-theme="dark"] .whc-eyebrow { color: #8B949E !important; }
+[data-theme="dark"] .whc-title { color: #E6EDF3 !important; }
+[data-theme="dark"] .whc-step { background: #1C2333 !important; border-color: #30363D !important; }
+[data-theme="dark"] .whc-step:hover { background: #1A2E47 !important; border-color: #3B5277 !important; }
+[data-theme="dark"] .whc-step-num  { color: #8B949E !important; }
+[data-theme="dark"] .whc-step-name { color: #E6EDF3 !important; }
+[data-theme="dark"] .whc-tag       { background: #1A2E47 !important; color: #60A5FA !important; }
+[data-theme="dark"] .whc-tag-result { background: #2D1700 !important; color: #FB923C !important; }
+[data-theme="dark"] .whc-connector::before { background: #93C5FD !important; opacity: .75 !important; }
+[data-theme="dark"] .whc-connector::after  { border-top-color: #93C5FD !important; opacity: .75 !important; }
+[data-theme="dark"] .whc-footer { border-top-color: #30363D !important; }
+[data-theme="dark"] .whc-footer span { color: #8B949E !important; }
+/* Services (already dark — slight adjustment) */
+[data-theme="dark"] .services-section { background: #051428 !important; }
+[data-theme="dark"] .services-section .svc-card {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.09) !important;
+}
+[data-theme="dark"] .services-section .svc-card:hover {
+  background: rgba(255,255,255,.09) !important;
+}
+/* Toolbox */
+[data-theme="dark"] .toolbox-section  { background: #0D1117 !important; }
+[data-theme="dark"] .toolbox-filter-bar {
+  background: #161B22 !important; border-color: #30363D !important;
+}
+[data-theme="dark"] #tool-search {
+  background: #0D1117 !important; border-color: #30363D !important; color: #E6EDF3 !important;
+}
+[data-theme="dark"] #tool-search::placeholder { color: #8B949E; }
+[data-theme="dark"] .cat-btn {
+  background: #161B22 !important; border-color: #30363D !important; color: #8B949E !important;
+}
+[data-theme="dark"] .cat-btn:hover  { border-color: #60A5FA !important; color: #60A5FA !important; }
+[data-theme="dark"] .cat-btn.active { background: #2563EB !important; border-color: #2563EB !important; color: #fff !important; }
+[data-theme="dark"] .tool-card {
+  background: #161B22 !important; border-color: #30363D !important;
+}
+[data-theme="dark"] .tool-card:hover {
+  border-color: #30363D !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4) !important;
+}
+[data-theme="dark"] .tool-card h4 { color: #E6EDF3 !important; }
+[data-theme="dark"] .tool-card p  { color: #8B949E !important; }
+[data-theme="dark"] .tool-card a  { color: #60A5FA !important; }
+[data-theme="dark"] .tool-card a:hover { color: #FB923C !important; }
+[data-theme="dark"] .tool-badge.functional { background: #1A2E47 !important; color: #93C5FD !important; }
+[data-theme="dark"] .tool-badge.genomics   { background: #0D2020 !important; color: #5EEAD4 !important; }
+[data-theme="dark"] .tool-badge.platform   { background: #0D2010 !important; color: #4ADE80 !important; }
+[data-theme="dark"] .tool-badge.viz        { background: #2D1700 !important; color: #FB923C !important; }
+[data-theme="dark"] .tool-badge.organism   { background: #2A0D10 !important; color: #F87171 !important; }
+[data-theme="dark"] #no-tools { color: #8B949E !important; }
+[data-theme="dark"] .tmpl-btn.inflam {
+  background: #2D1700 !important; border-color: #92400E !important; color: #FB923C !important;
+}
+[data-theme="dark"] .tmpl-btn.cycle  {
+  background: #0D2020 !important; border-color: #0E7490 !important; color: #22D3EE !important;
+}
+[data-theme="dark"] .btn-run { background: #1E3A5F !important; }
+[data-theme="dark"] .btn-run:hover { background: #1D4ED8 !important; }
+[data-theme="dark"] .fdr-badge { background: #0D2010 !important; color: #4ADE80 !important; }
+[data-theme="dark"] .enrich-empty { color: #30363D !important; }
+[data-theme="dark"] .enrich-empty p { color: #8B949E !important; }
+[data-theme="dark"] .enrich-bar-top .pw   { color: #C9D1D9 !important; }
+[data-theme="dark"] .enrich-bar-top .pval { color: #8B949E !important; }
+[data-theme="dark"] .enrich-track { background: #1E293B !important; }
+[data-theme="dark"] .enrich-fill  {
+  background: linear-gradient(90deg, #2563EB, #60A5FA) !important;
+}
+[data-theme="dark"] .enrich-genes { color: #8B949E !important; }
+[data-theme="dark"] .btn-enrichr {
+  background: #1A2E47 !important; color: #60A5FA !important; border-color: #30363D !important;
+}
+[data-theme="dark"] .btn-enrichr:hover { background: #1D4ED8 !important; color: #fff !important; }
+/* Contact */
+[data-theme="dark"] .contact-section { background: #0D1117 !important; }
+[data-theme="dark"] .contact-left h2 { color: #E6EDF3; }
+[data-theme="dark"] .contact-left p  { color: #8B949E; }
+[data-theme="dark"] .ci-icon { background: #1A2E47 !important; }
+[data-theme="dark"] .ci-label { color: #64748B !important; }
+[data-theme="dark"] .ci-value { color: #C9D1D9 !important; }
+[data-theme="dark"] .ci-value a { color: #60A5FA !important; }
+[data-theme="dark"] .contact-form-card {
+  background: #161B22 !important; border-color: #30363D !important;
+}
+[data-theme="dark"] .contact-form-card h3 { color: #E6EDF3 !important; }
+[data-theme="dark"] .contact-form-card .sub { color: #8B949E !important; }
+[data-theme="dark"] .form-field label { color: #C9D1D9 !important; }
+[data-theme="dark"] .form-field input,
+[data-theme="dark"] .form-field select,
+[data-theme="dark"] .form-field textarea {
+  background: #0D1117 !important; border-color: #30363D !important; color: #E6EDF3 !important;
+}
+[data-theme="dark"] .form-field input:focus,
+[data-theme="dark"] .form-field select:focus,
+[data-theme="dark"] .form-field textarea:focus {
+  border-color: #60A5FA !important; box-shadow: 0 0 0 3px #1A2E47 !important;
+}
+[data-theme="dark"] .btn-submit { background: #1D4ED8 !important; }
+[data-theme="dark"] .btn-submit:hover { background: #1E40AF !important; }
+[data-theme="dark"] #form-success h4 { color: #E6EDF3 !important; }
+[data-theme="dark"] #form-success p  { color: #8B949E !important; }
+</style>
+
+</body>
+</html>
